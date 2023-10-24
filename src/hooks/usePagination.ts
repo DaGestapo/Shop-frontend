@@ -1,0 +1,47 @@
+import {useEffect, useState, useMemo} from 'react';
+import { ItemI } from '../model/stateModel/itemI';
+import { useLoader } from './useLoader';
+
+export interface PaginationI {
+    page: number;
+    type: number;
+    listener: boolean;
+  }
+  
+export const usePagination = (
+  items: ItemI[] | null,
+  typeId?: number
+  ) : [
+      state: PaginationI, 
+      setState: React.Dispatch<React.SetStateAction<PaginationI>>,
+      loadNewPage: (pages: number) => void
+  ] => {
+    const loader = useLoader(8);
+    const [state, setState] = useState<PaginationI>({
+        type: typeId? typeId : 0,
+        page: 1,
+        listener: false
+      });
+    const isPaginationEnd = useMemo((): boolean => {
+        if(!items) return false;
+    
+        return items.length % 8 === 0;
+    }, [state.page]);
+
+
+    useEffect(() => {
+        if(isPaginationEnd) {
+          loader()(state.type, state.page);
+        }
+    }, [state.listener]);
+
+    const listener = (pages: number) => {
+      setState({
+        ...state, 
+        page: pages+1,
+        listener: !state.listener
+      });
+    }
+
+    return [state, setState, listener];
+}

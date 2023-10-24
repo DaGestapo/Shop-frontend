@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.popupInfo {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: $z-index-popup;
+
+    width: 100%;
+
+    gap: 10px;
+
+    select {
+        width: 50%;
+
+        padding: 10px 5px;
+        color: $main-blue;
+
+        cursor: pointer;
+
+        option {
+            z-index: $z-index-popup-options;
+        }
+    }
+
+    button {
+        background-color: $main-blue;
+        color: #fff;
+
+        padding: 5px 10px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+.show {
+    display: flex;
+}

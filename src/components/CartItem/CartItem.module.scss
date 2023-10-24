@@ -1,0 +1,41 @@
+
+.item {
+   
+
+    td {
+        padding-top: 2rem;
+        text-align: center;
+    }
+
+    &__delete {
+        cursor: pointer;
+
+        &_button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            font-size: 24px;
+            cursor: pointer;
+            
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .price {
+        font-size: 20px;
+        font-weight: 500;
+        
+    }
+
+    .quantity {
+        
+    }
+
+    .totalItemPrice {
+        font-size: 20px;
+        font-weight: 500;
+    }
+}

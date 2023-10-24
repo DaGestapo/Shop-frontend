@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.landing {
+    background-image: url('../../styles/assets/landingImg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    width: 100vw;
+    height: 27rem;
+
+    padding: 2rem;
+
+    h1 {
+        color: #fff;
+        font-size: $ui-h1_font_size;
+    }
+}

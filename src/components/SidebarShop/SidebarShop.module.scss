@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.sidebar {
+    width: 20%;
+    padding-left: 2rem;
+
+
+    article {
+        margin-top: 1rem;
+    }
+
+    h3 {
+        @include h3-style;
+    }
+
+    ul {
+        margin-top: 10px;
+
+        li {
+            margin-top: 5px;
+            cursor: pointer;
+
+            &:hover {
+                color: $main-blue;
+            }
+        }
+    }
+}

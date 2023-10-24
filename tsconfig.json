@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "babel-plugin-macros.config.js", "public/Registration.tsx"  ]
 }

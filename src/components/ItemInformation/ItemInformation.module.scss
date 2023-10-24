@@ -1,0 +1,38 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss'; 
+
+
+.itemInformation {
+    margin-top: 2rem;
+    width: 90vw;
+    grid-column: 1 / span 2;
+
+    .buttonList {
+        display: flex;
+        gap: 4rem;
+    }
+
+    .displayedInformation {
+        padding-top: 10px;
+        font-size: 18px;
+        color: $main-gray;
+        opacity: 0.9;
+
+    }
+
+    .selected {
+        color: $main-blue;
+        border-bottom: 4px solid $main-blue;
+    }
+
+    button {
+        font-size: 24px;
+        font-weight: 500;
+        padding-bottom: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            color: $main-blue;
+        }
+    }
+}

@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss'; 
+
+.featuredProducts {
+    margin-top: $ui-margin-top;
+
+    .list {
+        @include flex-justify_center-aling_center;
+        flex-wrap: wrap;
+    }
+
+    h2 {
+        @include h2-style;
+        text-align: center;
+    }
+
+}

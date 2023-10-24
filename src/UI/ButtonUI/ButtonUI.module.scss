@@ -1,0 +1,18 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.buttonUI {
+    @include button-style-none;
+
+    font-size: 20px;
+    
+    cursor: pointer;
+
+    &:hover {
+        color: $main-blue;
+    }
+}
+
+.select {
+    text-decoration: underline;
+}

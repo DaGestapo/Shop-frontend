@@ -1,0 +1,57 @@
+@import '_variables';
+@import './mixin.scss';
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+main {
+ 
+}
+
+.app {
+    font-family: 'Poppins';
+}
+
+.auth {
+    @include flex-column-aling_center;
+}
+
+.contact {
+   display: flex;
+   margin-top: 1rem;
+   padding: 1rem 2rem;
+   gap: 2rem;
+}
+
+.shop {
+    display: flex;
+  
+}
+
+.shopFilter {
+    
+}
+
+.itemPage {
+    height: fit-content;
+}
+
+
+li {
+    list-style: none;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+

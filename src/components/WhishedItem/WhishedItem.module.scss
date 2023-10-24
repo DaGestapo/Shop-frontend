@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.whishItem {
+
+    td {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .tdOrder {
+        position: relative;
+
+        &_button {
+            padding: 10px 25px;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 20px;
+            background-color: $main-blue;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+
+    .hide {
+        display: none;
+    }
+
+}

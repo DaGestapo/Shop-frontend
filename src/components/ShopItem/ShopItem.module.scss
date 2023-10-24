@@ -1,0 +1,36 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.shopItem {
+    position: relative;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    cursor: pointer;
+
+    .info {
+        @include flex-justify_center-aling_center;
+        position: relative;
+        flex-direction: column;
+        margin-top: 10px;
+
+        h4 {
+            width: 100%;
+            text-align: left;
+            font-size: $ui-h4_font_size;
+        }
+        
+    }
+    
+}
+
+.hotSale {
+    position: absolute;
+    background-color: $main-red;
+    color: #fff;
+  
+    padding: 5px 15px;
+    z-index: $z-index-cover;
+}

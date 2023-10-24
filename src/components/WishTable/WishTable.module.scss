@@ -1,0 +1,26 @@
+.wishTable {
+    width: 100%;
+
+    th:nth-child(1) {
+        width: 10%;
+    }
+
+    th:nth-child(2) {
+        text-align: left;
+        width: 60%;
+    }
+
+    th:nth-child(3) {
+        width: 10%;
+    }
+
+    th:nth-child(4) {
+         width: 20%;
+    }
+
+    th {
+        text-align: center;
+        font-size: 24px;
+        font-weight: 400;
+    }
+}

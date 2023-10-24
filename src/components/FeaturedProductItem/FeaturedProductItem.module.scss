@@ -1,0 +1,39 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.article {
+    @include flex-justify_center;
+
+    padding: 1rem 2rem;
+    gap: $ui-icons_gap;
+
+    h4 {
+        font-weight: 400;
+        font-size: 22px;
+    }
+
+    .info {
+        height: auto;
+        width: 15vw;
+    }
+
+    .price {
+        display: flex;
+        font-size: 20px;
+        margin-top: 1rem;
+        gap: $ui-price-left_gap;
+
+        &_red {
+            @include font-style-saleOff;
+        }
+
+        &_gray {
+            @include font-style-prevPrice;
+        }
+
+        &_default {
+            @include font-style-price;
+        }
+    }
+
+}

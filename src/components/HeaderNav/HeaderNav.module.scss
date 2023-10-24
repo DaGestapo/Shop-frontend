@@ -1,0 +1,33 @@
+@import '../../styles//variables';
+
+.shop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: $z-index-menu;
+    background-color: #fff;
+
+    padding: 1rem 2rem;
+
+    .logo {
+        a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: end;
+        gap: 5%;
+        font-size: 20px;
+        font-weight: 500;
+        width:100%;
+
+        a:hover {
+            color: $main-blue;
+        }
+    }
+}

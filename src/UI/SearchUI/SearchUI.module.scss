@@ -1,0 +1,35 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.form {
+    @include flex-justify_center-aling_center;
+    width: 100vw;
+  
+    .input {
+        width: 30%;
+        padding: 10px 15px;
+
+        font-size: 18px;
+        outline: none;
+
+        border: 1px solid $main-blue;
+    }
+
+    button {
+        background-color: $main-blue;
+
+        color: #fff;
+        font-weight: 500;
+        font-size: 18px;
+
+        padding: 10px 15px;
+        border: 1px solid $main-blue;
+
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+    }
+}

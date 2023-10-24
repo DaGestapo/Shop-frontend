@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss'; 
+
+
+.article {
+    @include flex-justify_center-aling_center;
+    flex-direction: column;
+
+    padding: 1rem 2rem;
+    width: 15vw;
+    gap: 1rem;
+
+
+    p {
+        text-align: center;
+        font-size: $ui-p-default;
+    }
+
+    h4 {
+        @include h4-style;
+        text-align: center;
+    }
+}

@@ -1,0 +1,47 @@
+@import '../../styles/mixin.scss';
+@import '../../styles/variables';
+
+.landing {
+    width: 80%;
+
+    .shopFilter {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 1rem 2rem;
+        font-size: 18px;
+        gap: 1rem;
+    }
+    .paginationOptions {
+        margin-left: 2rem;
+    }
+
+    .displayType {
+        margin-left: auto;
+        display: flex;
+        gap: 1rem;
+
+        svg {
+            height: 30px;
+            cursor: pointer;
+
+            &:hover {
+                color: $main-blue;
+            }
+        }
+    }
+
+    .itemsList {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        justify-content: center;
+        margin-top: 1rem;
+
+        gap: $ui-horizont_gap;
+    }
+
+    .line {
+        grid-template-columns: 100%;
+    }
+}

@@ -1,0 +1,11 @@
+.emptyTable {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_message {
+        font-size: 36px;
+        font-weight: 500;
+    }
+}

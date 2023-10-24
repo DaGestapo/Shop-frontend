@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.check {
+    width: 100%;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    h3, p {
+        position: relative;
+        width: 80%;
+
+        .right {
+            position: absolute;
+            right: 0;
+        }
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 30px;
+        font-weight: 400;
+        margin-top: 20px;
+    }
+
+    button {
+        margin-top: 5px;
+        background-color: $main-blue;
+        width: 80%;
+        font-size: 24px;
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

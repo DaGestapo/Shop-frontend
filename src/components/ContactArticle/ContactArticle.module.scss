@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.contactArticle {
+    position: relative;
+    display: flex;
+
+    background-color: $main-blue;
+    background-image: url('../../styles/svg/call\ 1.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: -7rem 1rem;
+    
+    color: #fff;
+
+    height: 80vh;
+    width: 50%;
+    
+    article {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        justify-content: center;
+        margin-left: 50%;
+        margin-right: 2rem;
+
+        ul {
+            margin-top: 10%;
+
+            li {
+                margin-top: 1rem;
+            }
+        }
+   
+    }
+
+    h2 {
+        @include h2-style;
+        text-align: left;
+
+    }
+}

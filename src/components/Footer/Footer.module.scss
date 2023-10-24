@@ -1,0 +1,57 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.footer {
+    background-color: $main-green-light;
+    padding: 8rem 4rem 1rem 4rem;
+    margin-top: 3rem;
+    
+    .firstRow {
+        display: grid;
+        grid-template-columns: 40% 30% 30%;
+
+        .logo {
+            @include flex-aling_center;
+            gap: 5px;
+        }
+
+        .icons {
+            margin-top: 1rem;
+            display: flex;
+            gap: 5px;
+        }
+
+        article {
+            display: flex;
+            justify-content: left;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        p {
+            width: 60%;
+        }
+
+        address {
+            width: 60%;
+            font-style: normal;
+        }
+    }
+
+    .secondRow {
+        display: grid;
+        margin-top: 3rem;
+        grid-template-columns: 25% 25% 25% 25%;
+        padding-bottom: 3rem;
+
+        border-bottom: 2px solid #fff;
+        
+    }
+
+    .thirdRow {
+        padding-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+}

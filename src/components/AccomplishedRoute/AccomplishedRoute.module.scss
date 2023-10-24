@@ -1,0 +1,25 @@
+@import '../../styles/variables';
+
+.routeList {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 18px;
+    width: 100%;
+
+    .endpoint {
+        cursor: default;
+    }
+
+    span {
+        color: $main-gray;
+    }
+
+    a {
+        &:hover {
+            color: $main-blue;
+        }   
+    }
+}

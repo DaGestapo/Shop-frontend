@@ -1,0 +1,36 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.couponForm {
+    display: flex;
+    padding: 2rem 2rem;
+
+    &__input {
+        height: 3rem;
+    }
+
+    input {
+        height: 100%;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: 1px solid transparent;
+        outline: none;
+
+        &:focus {
+            border: 1px solid $main-blue;
+        }
+    }
+
+    button {
+        height: 100%;
+        background-color: $main-blue;
+        color: #fff;
+        font-size: 18px;
+        padding: 10px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.controle {
+        display: flex;
+        gap: $ui-left_gap;
+
+        .selected {
+            color: $main-blue;
+            border-bottom: 3px solid $main-blue;
+        }
+
+        button {
+            @include button-style-none;
+            font-size: 18px;
+            padding-bottom: 5px;
+
+            cursor: pointer;
+
+            &:hover {
+                color: $main-blue;
+            }
+        }
+    }

@@ -1,0 +1,78 @@
+@import './variables'; 
+
+@mixin flex-column-aling_center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin flex-justify_center {
+    display: flex;
+    justify-content: center;
+}
+
+@mixin flex-aling_center {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flex-justify_center-aling_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@mixin margin-top_SaleOff {
+    margin-top: $negative-margin_saleOff * - 2;
+}
+
+
+@mixin font-style-priceOff {
+    color: $main-blue;
+    font-weight: $ui-price_font_weight;
+}
+
+@mixin font-style-prevPrice {
+    color: $main-gray;
+    text-decoration: line-through;
+    font-weight: $ui-price_font_weight;
+}
+
+@mixin font-style-saleOff {
+    color: $main-red;
+    font-weight: $ui-price_font_weight;
+}
+
+@mixin font-style-price {
+    color: black;
+    font-weight: $ui-price_font_weight;
+}
+
+
+
+@mixin button-style-none {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+@mixin h4-style {
+    font-size: $ui-h4_font_size;
+    font-weight: 600;
+}
+
+@mixin h3-style {
+    font-size: $ui-h3_font_size;
+    font-weight: 500;
+}
+
+@mixin h2-style {
+    font-size: $ui-h2_font_size;
+    font-weight: 500;
+}
+
+@mixin h1-style {
+    font-size: $ui-h1_font_size;
+    font-weight: 400;
+}

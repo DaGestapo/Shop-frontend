@@ -1,0 +1,78 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.auth {
+    @include flex-column-aling_center;
+    justify-content: center;
+
+
+    width: 40%;
+
+    padding: 1rem;
+    margin-top: 3rem;
+    gap: 1rem;
+
+    img {
+        width: 10%;
+    }
+
+    h1 {
+        @include h1-style;
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    p {
+        color: $main-gray;
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    button {
+        background-color: $main-blue;
+        padding: 1rem 2rem;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .social {
+        position: relative;
+        background-color: transparent;
+        color: $main-gray;
+        font-weight: 600;
+        width: 75%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+
+        img {
+            position: absolute;
+            height: max-content;
+            left: 0;
+        }
+    }
+
+    .changeLanding {
+        @include flex-column-aling_center;
+        
+
+        p {
+            font-size: 24px;
+        }
+
+        span {
+            color: $main-blue;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}

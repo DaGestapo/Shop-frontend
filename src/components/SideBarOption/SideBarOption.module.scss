@@ -1,0 +1,22 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.sidebarUl {
+    margin-top: 10px;
+
+    .selected {
+        color: $main-blue;
+        border-bottom: 3px solid $main-blue;
+    }
+
+
+    li {
+        margin-top: 5px;
+        width: fit-content;
+        cursor: pointer;
+
+        &:hover {
+            color: $main-blue;
+        }
+    }
+}

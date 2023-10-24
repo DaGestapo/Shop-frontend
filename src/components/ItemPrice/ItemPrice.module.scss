@@ -1,0 +1,28 @@
+@import '../../styles/mixin.scss';
+@import '../../styles/variables';
+
+.price {
+    @include flex-justify_center;
+    width: 100%;
+    gap: $ui-price-left_gap;
+    display: flex;
+    justify-content: left;
+    font-size: 20px;
+    margin-top: 1rem;
+
+    &_blue {
+        @include font-style-priceOff;
+    }
+
+    &_gray {
+        @include font-style-prevPrice;
+    }
+
+    &_red {
+        @include font-style-saleOff;
+    }
+
+    &_default {
+        @include font-style-price;
+    }
+}

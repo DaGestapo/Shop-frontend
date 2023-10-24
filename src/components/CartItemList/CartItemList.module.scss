@@ -1,0 +1,45 @@
+.cartTable {
+    width: 100%;
+
+    th {
+        text-align: center;
+    }
+
+    th:nth-child(1) {
+        width: 5%;
+    }
+
+    th:nth-child(2) {
+        text-align: left;
+        width: 40%;
+    }
+
+    th:nth-child(3) {
+        width: 10%;
+    }
+
+    th:nth-child(4) {
+         width: 10%;
+    }
+
+    th:nth-child(5) {
+        width: 10%;
+    }
+
+    th {
+        font-size: 24px;
+        font-weight: 400;
+    }
+}
+
+.cart__empty {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_message {
+        font-size: 36px;
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,62 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.add {
+    position: relative;
+    background-color: $main-blue;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    margin-top: $ui-margin-top + 2;
+
+    .info {
+        @include flex-justify_center;
+        align-items: flex-start;
+        flex-direction: column;
+
+        color: #fff;
+        padding-left: 2rem;
+
+        button {
+            @include button-style-none;
+
+            margin-top: 1rem;
+            font-size: 20px;
+            color: #fff;
+
+            &:hover {
+                opacity: 0.8;
+
+                hr {
+                    opacity: 0.8;
+                }
+            }
+
+            
+        }
+
+        
+        hr {
+            margin-top: 7px;
+            width: 5rem;
+            color: #fff;
+            background-color: #fff;
+            height: 3px;
+        }
+        
+        h1 {
+            @include h1-style;
+        }
+
+        p {
+            font-size: $ui-p-default;
+        }
+    }
+
+    img {
+        width: 100%;
+        margin-top: -7rem;
+    }
+    
+}

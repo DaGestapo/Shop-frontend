@@ -1,0 +1,8 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss'; 
+
+.advantages {
+    @include flex-justify_center-aling_center;
+    margin-top: $ui-margin-top;
+    gap: 10%
+}

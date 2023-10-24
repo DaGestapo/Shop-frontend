@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+@keyframes rotate {
+    from {
+        transform: rotateZ(0deg);
+    } to {
+        transform: rotateZ(180deg);
+    }
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 40vh;
+
+    img {
+        width: 10rem;
+        animation: rotate 1s infinite;
+    }
+
+    p {
+        margin-top: 2rem;
+        font-size: 24px;
+    }
+}

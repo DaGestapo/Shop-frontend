@@ -1,0 +1,43 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.inputUi {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+
+    //border: 2px solid $main-blue;
+    width: 100%;
+
+    gap: 1rem;
+
+    &_gray {
+        border: 1px solid $main-gray;
+    }
+
+    input {
+        position: relative;
+
+        color: $main-gray;
+        width: 100%;
+        border: none;
+        padding: 1rem;
+        outline: none;
+    }
+
+    svg {
+    
+        color: $main-gray;
+    }
+
+}
+
+.selected {
+    border: 1px solid $main-blue;
+    color: $main-blue;
+
+    svg {
+        color: $main-blue; 
+    }
+}

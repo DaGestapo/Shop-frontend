@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.form {
+    @include flex-column-aling_center;
+    width: 75%;
+    margin-top: $ui-margin-top;
+
+    gap: $ui-vertical_gap;
+
+
+    button {
+        width: 100%;
+        font-size: 28px;
+        font-weight: 500;
+
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+}

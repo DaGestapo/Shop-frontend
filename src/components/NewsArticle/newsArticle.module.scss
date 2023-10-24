@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.article {
+    @include flex-justify_center-aling_center;
+
+    padding: 1rem 2rem;
+    gap: $ui-icons_gap;
+
+    .info {
+        width: 15vw;
+    }
+
+    .date {
+        color: $main-gray;
+    }
+}

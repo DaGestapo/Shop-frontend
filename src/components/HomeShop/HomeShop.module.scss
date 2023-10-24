@@ -1,0 +1,35 @@
+@import '../../styles/mixin.scss';
+@import '../../styles/variables';
+
+.homeShop {
+    @include margin-top_SaleOff;
+    @include flex-justify_center-aling_center;
+
+    flex-direction: column;
+
+    gap: $ui-vertical_gap;
+
+    h2 {
+        @include h2-style;
+    }
+
+    button {
+        @include button-style-none;
+        font-size: 20px;
+        
+        cursor: pointer;
+
+        &:hover {
+            color: $main-blue;
+        }
+    }
+    
+    .list {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20%;
+        justify-content: center;
+
+        gap: $ui-horizont_gap;
+    }
+}

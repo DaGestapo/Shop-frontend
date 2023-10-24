@@ -1,0 +1,40 @@
+@import '../../styles/mixin.scss';
+@import '../../styles/variables';
+
+.buttons {
+    margin-top: 10px;
+    height: 44px;
+
+    button {
+        margin-left: 10px;
+        font-size: 20px;
+        color: $main-blue;
+        padding: 10px;
+        background-color: rgba(#d4d4d4, 0.4);
+        border-radius: 10px;
+        height: 100%;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $main-blue;
+            color: #fff;
+        }
+    }
+
+    button:nth-child(1) {
+        margin-left: auto;
+    }
+
+    button:nth-child(2) {
+
+        svg {
+            margin-right: auto;
+        }
+    }
+
+    svg {
+        margin-right: 10px;
+    }
+
+    
+}
