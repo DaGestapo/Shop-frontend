@@ -14,7 +14,7 @@ interface ItemPagePropsI {
 const ItemPage:FC<ItemPagePropsI> = () => {
   const [item, isLoading, error] = useGetItem();
   const links = useCalcRoute(item?.id);
-  console.log(item);
+  
    if(item) {
     return (
       <section className='itemPage'>

@@ -62,7 +62,7 @@ export const getItemById = async(itemId: string): Promise<ItemFullI> => {
             item_imgs: itemImage,
             item_info: itemInfo
         }
-        console.log(item);
+        
         return item;
     } catch (error) {
         console.log(error);

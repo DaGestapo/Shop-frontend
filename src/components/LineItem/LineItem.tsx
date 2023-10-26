@@ -32,6 +32,7 @@ const LineItem:FC<{item: ItemShopI}> = ({item}) => {
         <section className={module.item}>
             <h3>{item.name}</h3>
             <ItemEstimation 
+                itemId={item.id}
                 rate={rate? rate : []} 
                 reviewNumber={item.review? item.review.length : 0}
             />

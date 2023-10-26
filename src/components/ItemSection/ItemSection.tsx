@@ -108,6 +108,7 @@ const ItemSection:FC<ItemSectionI> = ({item}) => {
               <div className={module.imgs__list}>
                   {item.item_imgs.img.map(src => 
                     <img 
+                      key={src}
                       className={module.imgs__list__item}
                       src={process.env.REACT_APP_API_URL + src}
                       alt="img" 
@@ -120,6 +121,7 @@ const ItemSection:FC<ItemSectionI> = ({item}) => {
               <h3>{item.name}</h3>
               {rate && 
                 <ItemEstimation 
+                  itemId={item.id}
                   rate={rate}
                   reviewNumber={item.review.length}
                 />
@@ -171,7 +173,10 @@ const ItemSection:FC<ItemSectionI> = ({item}) => {
                     onChange={selectListener}
                     >
                     {item.item_info.sizes.map(size => 
-                      <option value={size}>{size}</option>
+                      <option
+                        key={size} 
+                        value={size}
+                        >{size}</option>
                     )}
                   </select>
                 </div>
