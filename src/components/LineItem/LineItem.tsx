@@ -2,7 +2,7 @@ import {FC, createRef} from 'react';
 import module from './LineItem.module.scss'
 
 import ItemPrice from '../ItemPrice/ItemPrice';
-import ItemEstimation from '../ItemHeader/ItemEstimation';
+import ItemEstimation from '../ItemEstimation/ItemEstimation';
 import AddToCartButtonUI from '../../UI/AddToCartButtonUI/AddToCartButtonUI';
 
 import { useNavigate } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import {FC, createRef, useState, PointerEvent, ChangeEvent} from 'react';
 import module from './ItemSection.module.scss';
 
-import ItemEstimation from '../ItemHeader/ItemEstimation';
+import ItemEstimation from '../ItemEstimation/ItemEstimation';
 import ItemPrice from '../ItemPrice/ItemPrice';
 import ShareButtonUI from '../../UI/ShareButtonUI/ShareButtonUI';
 import ItemInformation from '../ItemInformation/ItemInformation';
