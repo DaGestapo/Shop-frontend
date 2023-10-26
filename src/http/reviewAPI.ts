@@ -13,3 +13,12 @@ export const addUserReview = async(reviewText: string, itemId: string) => {
         
     }
 }
+
+export const changeReviewText = async(reviewText: string, reviewId: string) => {
+    const URLRequest = `api/review`;
+        const response = await $authHost.put(URLRequest, {
+            reviewId,
+            reviewText
+        });  
+        return response.data;
+}

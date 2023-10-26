@@ -14,9 +14,10 @@ enum display {
 interface ItemInformationI {
     description: string;
     reviews: ReviewI[];
+    itemId: string;
 }
 
-const ItemInformation: FC<ItemInformationI> = ({description, reviews}) => {
+const ItemInformation: FC<ItemInformationI> = ({description, reviews, itemId}) => {
     const [displayedInformation, setDisplayedInformation] = useState<display>(
         display.DESCRIPTION
     );
@@ -46,13 +47,16 @@ const ItemInformation: FC<ItemInformationI> = ({description, reviews}) => {
                 <button 
                     id={display.DESCRIPTION}
                     onClick={changeDisplayedInformation}
-                    className={module.selected}
+                    className={`${module.selected}, ${module.itemInformation_button}`}
                 >Product  Information</button>
                 <button 
                     id={display.REVEWES}
                     onClick={changeDisplayedInformation}
+                    className={`${module.itemInformation_button}`}
                 >Reviews <span>{reviews.length}</span></button>
-                <button onClick={changeDisplayedInformation}>Product  Information</button>
+                <button 
+                    className={`${module.itemInformation_button}`}
+                    onClick={changeDisplayedInformation}>Other</button>
             </div>
             <div className={module.displayedInformation}>
                 {displayedInformation === display.DESCRIPTION &&
@@ -60,7 +64,10 @@ const ItemInformation: FC<ItemInformationI> = ({description, reviews}) => {
                 }
 
                 {displayedInformation === display.REVEWES && 
-                    <ReviewList reviews={reviews}/>
+                    <ReviewList 
+                        reviews={reviews}
+                        itemId={itemId}
+                        />
                 }
             </div>
         </section>

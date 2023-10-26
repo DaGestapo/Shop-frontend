@@ -4,13 +4,13 @@ import module from './ReviewList.module.scss';
 import Review from '../Review/Review';
 
 import { ReviewI } from '../../model/stateModel/reviewI';
-import { RatingI } from '../../model/stateModel/ratingI';
 
 interface ReviewListI {
     reviews : ReviewI[];
+    itemId: string;
 }
 
-const ReviewList: FC<ReviewListI> = ({reviews}) => {
+const ReviewList: FC<ReviewListI> = ({reviews, itemId}) => {
 
 
     if(reviews.length === 0) {
@@ -23,6 +23,8 @@ const ReviewList: FC<ReviewListI> = ({reviews}) => {
             <section>
                 {reviews.map(review => 
                     <Review 
+                        key={review.id}
+                        itemId={itemId}
                         review={review}
                         />    
                 )}

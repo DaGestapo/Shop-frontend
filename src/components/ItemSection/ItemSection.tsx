@@ -121,6 +121,7 @@ const ItemSection:FC<ItemSectionI> = ({item}) => {
               <h3>{item.name}</h3>
               {rate && 
                 <ItemEstimation 
+                  showSumbit={true}
                   itemId={item.id}
                   rate={rate}
                   reviewNumber={item.review.length}
@@ -242,6 +243,7 @@ const ItemSection:FC<ItemSectionI> = ({item}) => {
         </section>
         <BestSellsItem />
         <ItemInformation 
+          itemId={item.id}
           description={item.item_info.description}
           reviews={item.review}
         />

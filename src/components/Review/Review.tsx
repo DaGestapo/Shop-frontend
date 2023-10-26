@@ -1,8 +1,13 @@
-import {FC} from 'react';
+import {FC, useState, createRef, ChangeEvent} from 'react';
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import module from './Review.module.scss';
 
+import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHools';
+
 import Rating from '../Rating/Rating';
+
+import { changeReviewText } from '../../http/reviewAPI';
+import { deleteItemByItemId } from '../../store/redusers/itemReduser';
 
 import { userIcon } from '../../utils/icons-utf';
 
@@ -10,9 +15,40 @@ import { ReviewI } from '../../model/stateModel/reviewI';
 
 interface ReviewPropsI {
     review: ReviewI;
+    itemId: string;
 }
 
-const Review: FC<ReviewPropsI> = ({review}) => {
+const Review: FC<ReviewPropsI> = ({review, itemId}) => {
+    const dispatch = useAppDispatch();
+    const currentUser = useAppSelector(state => state.user); 
+    const [textReviewa, setTextReviewa] = useState<string>(review.review);
+    const [isReviewEditorOpen, setIsReviewEditorOpen] = useState<boolean>(false);
+
+    const paragraphRef = createRef<HTMLParagraphElement>();
+    const reviewPopup = createRef<HTMLDivElement>();
+
+    const openPopup = () => {
+        if(!reviewPopup.current || !paragraphRef.current) return;
+
+        reviewPopup.current.classList.toggle(module.open);
+        paragraphRef.current.classList.toggle(module.close);
+        setIsReviewEditorOpen(!isReviewEditorOpen);
+    }
+
+    const confirmChanges = () => {
+        openPopup();
+
+        changeReviewText(textReviewa, review.id)
+            .then(data => {
+                console.log(data);
+            })
+        
+        dispatch(deleteItemByItemId(itemId));
+    }
+
+    const changeReview = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setTextReviewa(e.target.value);
+    }
 
     return (
         <article className={module.reviewArticle}>
@@ -35,8 +71,42 @@ const Review: FC<ReviewPropsI> = ({review}) => {
                 </section>
             </div>
             <div className={module.reviewArticle__review}>
-                <p>{review.review}</p>
+                <p ref={paragraphRef}>{review.review}</p>
+                {(currentUser && currentUser.user?.id === review.user.id) &&
+                <div 
+                    ref={reviewPopup}
+                    className={module.reviewArticle__popup}>
+                    <textarea
+                        onChange={changeReview}
+                    >{textReviewa}</textarea>
+                </div>
+            }
             </div>
+            {(currentUser && currentUser.user?.id === review.user.id) &&
+                <div>
+                    {isReviewEditorOpen 
+                        ?   <div>
+                                <button
+                                    className={module.reviewArticle_changeReview}
+                                    onClick={confirmChanges}
+                                >Confirm Changes</button>
+                                <button
+                                    style={{marginLeft: `10px`}}
+                                    className={module.reviewArticle_changeReview}
+                                    onClick={openPopup}
+                                >Close</button>
+                            </div>
+                        :   <div>
+                                <button
+                                    className={module.reviewArticle_changeReview}
+                                    onClick={openPopup}
+                                >Edit your review</button>
+                            </div>
+                    }
+                </div>
+                
+            }
+
             
         </article>
     )

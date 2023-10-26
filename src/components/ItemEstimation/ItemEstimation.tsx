@@ -17,10 +17,11 @@ import {StarI } from '../../model/itemI';
 interface ItemEstimationI {
     rate: StarI[];
     reviewNumber: number;
-    itemId: string
+    itemId: string;
+    showSumbit: boolean;
 }
 
-const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId}) => {
+const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId, showSumbit}) => {
     const buttonRef = createRef<HTMLButtonElement>();
     const popupRef = createRef<HTMLElement>();
     const ratingStarsRef = createRef<HTMLElement>();
@@ -60,11 +61,10 @@ const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId}) => {
                     console.log(data);
                 })
         }    
-
-        setStarsArray([]);
         setReviewText('');
 
         dispatch(deleteItemByItemId(itemId));
+        ratingStarsRef.current?.classList.remove(module.open);
     }
 
     const hoverStar = (e: MouseEvent<HTMLElement>) => {
@@ -114,10 +114,12 @@ const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId}) => {
             </div>
         }
         <p>{reviewNumber} reviews</p>
-        <button 
-            className={module.openPopup}
-            onClick={openPopup}
-            >Submit a reaview</button>
+        {showSumbit &&
+            <button 
+                className={module.openPopup}
+                onClick={openPopup}
+                >Submit a reaview</button>
+        }
 
         <section 
             className={module.estimation__popup}
@@ -141,12 +143,15 @@ const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId}) => {
             onPointerMove={hoverStar}
             onClick={selectRating}
             >
-            {starsArray.map((star, index) => 
-                <FontAwesomeIcon
-                    id={index.toString()}
-                    key={`starRev-${index}`}
-                    icon={star}/>    
-            )}
+                <h2>Rate our product</h2>
+                <div>
+                    {starsArray.map((star, index) => 
+                    <FontAwesomeIcon
+                        id={index.toString()}
+                        key={`starRev-${index}`}
+                        icon={star}/>    
+                    )}
+                </div>
         </section>
     </div>
     
