@@ -16,7 +16,7 @@ const HomeSaleOff: FC<HomeSaleOffPropsI> = () => {
     const loader = useLoader(8);
     
     if(items.length < 3) {
-        loader()(0)
+        loader()(0);
     }
 
     return (

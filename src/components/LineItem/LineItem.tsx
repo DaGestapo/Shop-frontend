@@ -1,12 +1,14 @@
-import {FC, createRef} from 'react';
+import {FC, createRef, useState, MouseEvent} from 'react';
 import module from './LineItem.module.scss'
 
 import ItemPrice from '../ItemPrice/ItemPrice';
 import ItemEstimation from '../ItemEstimation/ItemEstimation';
 import AddToCartButtonUI from '../../UI/AddToCartButtonUI/AddToCartButtonUI';
+import PopupCartOrder from '../PopupCartOrder/PopupCartOrder';
 
 import { useNavigate } from 'react-router-dom';
 import { useCalcRate } from '../../hooks/useCalcRate';
+import { addWhishItem } from '../../http/wishAPI';
 
 import { starRegularIcon } from '../../utils/icons-utf';
 import { starSolidIcon } from '../../utils/icons-utf';
@@ -18,13 +20,34 @@ const LineItem:FC<{item: ItemShopI}> = ({item}) => {
     const divArticleRef = createRef<HTMLDivElement>();
     const navigate = useNavigate();
     const rate = useCalcRate(item.rating, starSolidIcon, starRegularIcon);
+    const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
 
+    const addItemToWishList = () => {
+        addWhishItem(item.id)
+          .then(data => {
+          })
+      }
 
+    const clickOnSectionHandler = (e: MouseEvent<HTMLElement>) => {
+        if(!(e.target instanceof HTMLElement)) return;
+
+        const tragetButton = e.target.closest('button');
+        const targetSelect = e.target.closest('select');
+
+        if(tragetButton) {
+            setIsShowPopup(true);
+            return;
+        } else if(targetSelect) {
+            return;
+        }
+        
+        navigate(`/home/shop/${item.id}`)
+    }
   return (
     <article 
         className={module.shopItem}
         ref={divArticleRef}    
-        onClick={() => navigate(`/home/shop/${item.id}`)}
+        onClick={clickOnSectionHandler}
     >
         <section className={module.imageBlock}>
             <img src={process.env.REACT_APP_API_URL + item.img} alt="img" />
@@ -48,10 +71,18 @@ const LineItem:FC<{item: ItemShopI}> = ({item}) => {
                         item.item_info.description
                     }
                 </p>
-                <AddToCartButtonUI />
+                <AddToCartButtonUI wishFunc={addItemToWishList}/>
             
             </div>
         </section>
+
+        <PopupCartOrder 
+            itemId={item.id}
+            colors={item.item_info.colors}
+            sizes={item.item_info.sizes}
+            show={isShowPopup}
+            setIsShow={setIsShowPopup}
+        />
 
     </article>
   );
