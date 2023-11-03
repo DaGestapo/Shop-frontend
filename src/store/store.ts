@@ -6,12 +6,14 @@ import { featuredItemAPI } from "./redusers/featuredItemReduser";
 import { itemReduser } from "./redusers/itemReduser";
 import { cartReduser } from "./redusers/cartReduser";
 import {wishReduser} from './redusers/wishReduser'
+import { categoryReduser } from "./redusers/categoryReduser";
 
 const rootRedusers = combineReducers({
     user: userReduser,
     item: itemReduser,
     cart: cartReduser,
     wish: wishReduser,
+    category: categoryReduser,
     [newsAPI.reducerPath]: newsAPI.reducer,
     [advantageAPI.reducerPath]: advantageAPI.reducer,
     [featuredItemAPI.reducerPath]: featuredItemAPI.reducer

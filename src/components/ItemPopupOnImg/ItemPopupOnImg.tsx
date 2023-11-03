@@ -21,11 +21,12 @@ interface ItemPopupOnImgPropsI {
 
 const ItemPopupOnImg:FC<ItemPopupOnImgPropsI> = ({item, refArticle}) => {
   const divCoverRef = createRef<HTMLDivElement>();
+  const imgRef = createRef<HTMLImageElement>();
+
   const userAuth = useAppSelector(state => state.user.auth);
-  const dispatch = useAppDispatch();
   const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
   
-  useShowCover(refArticle, divCoverRef);
+  useShowCover(refArticle, divCoverRef, imgRef);
   
 
   const showCartOrder = () => {
@@ -47,7 +48,10 @@ const ItemPopupOnImg:FC<ItemPopupOnImgPropsI> = ({item, refArticle}) => {
 
   return (
     <div className={module.swichBlock}>
-        <img src={process.env.REACT_APP_API_URL + item.img} alt="img"/>
+        {item.hot && 
+              <div className={module.hotSale}>HOT</div>
+          }
+        <img ref={imgRef} src={process.env.REACT_APP_API_URL + item.img} alt="img"/>
         {userAuth && 
           <div 
             className={module.cover}

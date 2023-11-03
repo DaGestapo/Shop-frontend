@@ -1,0 +1,39 @@
+@import '../../styles/config';
+@import '../../styles/mixin.scss';
+@import '../../styles/variables';
+
+.itemSlider {
+    display: none;
+    flex-direction: column;
+    width: 100vw;
+
+    padding: 2rem 2rem;
+
+  
+
+    &__list {
+        position: relative;
+        display: none;
+        height: inherit;
+    
+        margin-top: 20px;
+        gap: 2rem;
+        overflow: hidden;
+
+        article {
+      
+        }
+    }
+}
+
+
+
+@include small-md {
+    .itemSlider {
+        display: flex;
+
+        &__list {
+            display: flex;
+        }
+    }
+}

@@ -1,5 +1,6 @@
 @import '../../styles//variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 .main {
     position: relative;
@@ -21,17 +22,33 @@
 
     .search {
         @include flex-aling_center;
-        border: 1px solid black;
         border-radius: 2rem;
-        padding: 2px 10px;
-        background-color: #fff;
+        padding: 5px 10px;
+        font-size: 18px;
+        background-color: #e8e8e8;
 
         input {
+            background-color: #e8e8e8;
+            font-size: 18px;
             border: none;
             height: 100%;
-            margin-left: 5px;
+            margin-left: 10px;
             outline: none;
+        }
+
+        svg {
+            color: $main-blue;
         }
     }
     
+}
+
+@include small-md{
+    .main {
+        flex-direction: column;
+        
+        .navbar {
+            display: none;
+        }
+    }
 }

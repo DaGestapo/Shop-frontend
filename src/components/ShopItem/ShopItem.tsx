@@ -14,7 +14,13 @@ import { starSolidIcon } from '../../utils/icons-utf';
 
 import { ItemShopI } from '../../model/stateModel/itemI';
 
-const ShopItem:FC<{item: ItemShopI}> = ({item}) => {
+interface ShopItemI {
+    item: ItemShopI;
+    position?: 'absolute' | 'relative';
+    width?: number;
+}
+
+const ShopItem:FC<ShopItemI> = ({item, position, width}) => {
     const divArticleRef = createRef<HTMLDivElement>();
     const navigate = useNavigate();
     const rate = useCalcRate(item.rating, starSolidIcon, starRegularIcon);
@@ -32,29 +38,34 @@ const ShopItem:FC<{item: ItemShopI}> = ({item}) => {
 
   return (
     <article 
+        style={{
+            position: `${position? 'absolute': 'relative'}`,
+            width: `${width? width + 'px': ''}`
+        }}
+       
         className={module.shopItem}
         ref={divArticleRef}    
         onClick={moveToItemPage}
     >
-        {item.hot && 
-            <div className={module.hotSale}>HOT</div>
-        }
         <ItemPopupOnImg 
             refArticle={divArticleRef}
             item={item}
         />
       
         <section className={module.info}>
+           
             <ItemPrice 
                 price={item.price}
                 priceOff={item.priceOff}
                 saleOff={item.saleOff}
             />
+    
             <h4>{item.name}</h4>
-
-            { rate && 
-                <Rating rating={item.rating}/>
-            }
+            <div className={module.ratingBlock}>
+                { rate && 
+                    <Rating rating={item.rating}/>
+                }
+            </div>
         </section>
     </article>
   );

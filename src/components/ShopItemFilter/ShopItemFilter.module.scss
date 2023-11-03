@@ -3,6 +3,8 @@
 
 .controle {
         display: flex;
+        justify-content: center;
+        width: 100%;
         gap: $ui-left_gap;
 
         .selected {

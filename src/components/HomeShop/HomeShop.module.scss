@@ -1,12 +1,12 @@
 @import '../../styles/mixin.scss';
 @import '../../styles/variables';
+@import '../../styles/config';
 
 .homeShop {
-    @include margin-top_SaleOff;
     @include flex-justify_center-aling_center;
-
     flex-direction: column;
-
+    margin-top: 10rem;
+    
     gap: $ui-vertical_gap;
 
     h2 {
@@ -27,9 +27,28 @@
     .list {
         width: 100%;
         display: grid;
-        grid-template-columns: 20% 20% 20% 20%;
+        grid-template-columns: 15% 15% 15% 15% 15%;
         justify-content: center;
+       
 
         gap: $ui-horizont_gap;
+    }
+}
+
+@include medium-md {
+    .homeShop {
+
+        .list {
+            grid-template-columns: 25% 25% 25%;
+        }
+    }
+}
+
+@include small-md {
+    .homeShop {
+
+        .list {
+            grid-template-columns: 20% 20% 20%;
+        }
     }
 }

@@ -11,9 +11,10 @@ import { RatingI } from '../../model/stateModel/ratingI';
 
 interface RatingPropsI {
     rating: RatingI[];
+    display?: string;
 }
 
-const Rating: FC<RatingPropsI> = ({rating}) => {
+const Rating: FC<RatingPropsI> = ({rating, display}) => {
     const rate = useCalcRate(rating, starSolidIcon, starRegularIcon);
 
     return (

@@ -1,0 +1,39 @@
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+.mobileMenu {
+    position: absolute;
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    width: 100vw;
+    height: 15vh;
+    top: 85vh;
+    background-color: #fff;
+
+    z-index: $z-index-mabile-menu;
+
+    a {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        &:hover {
+            color: $main-blue;
+        }
+
+        svg {
+            font-size: 28px;
+        }
+    }
+}
+
+
+@include small-md {
+    .mobileMenu {
+        display: flex;
+
+    }
+}

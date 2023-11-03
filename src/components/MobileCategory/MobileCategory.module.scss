@@ -1,0 +1,53 @@
+@import '../../styles/config', '../../styles/variables', '../../styles/variables';
+
+.mobileCategory {
+    display: none;
+    width: 100vw;
+
+    padding: 2rem 2rem;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+
+        h4,p {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+    }
+
+    &__list {
+        position: relative;
+        display: flex;
+
+        margin-top: 20px;
+        gap: 1rem;
+
+        overflow: hidden;
+
+        svg {
+            font-size: 30px;
+        }
+
+        &_item {
+         
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            width: 20vw;
+
+            transition: all 0.2s ease-in-out;
+        }
+    }
+}
+
+@include small-md {
+    .mobileCategory {
+        display: block;
+    }
+}

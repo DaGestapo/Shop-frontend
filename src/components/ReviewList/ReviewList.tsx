@@ -3,6 +3,8 @@ import module from './ReviewList.module.scss';
 
 import Review from '../Review/Review';
 
+import { useAppSelector } from '../../hooks/reduxTypedHools';
+
 import { ReviewI } from '../../model/stateModel/reviewI';
 
 interface ReviewListI {
@@ -11,7 +13,7 @@ interface ReviewListI {
 }
 
 const ReviewList: FC<ReviewListI> = ({reviews, itemId}) => {
-
+    const currentUser = useAppSelector(state => state.user); 
 
     if(reviews.length === 0) {
         return (
@@ -22,11 +24,11 @@ const ReviewList: FC<ReviewListI> = ({reviews, itemId}) => {
         return (
             <section>
                 {reviews.map(review => 
-                    <Review 
+                       <Review 
                         key={review.id}
                         itemId={itemId}
                         review={review}
-                        />    
+                       /> 
                 )}
             </section>
         )

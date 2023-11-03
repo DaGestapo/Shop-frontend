@@ -1,17 +1,24 @@
 @import '../../styles/mixin.scss';
 @import '../../styles/variables';
-
+@import '../../styles/config';
 
 .saleOff {
+    position: relative;
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: center;
-    align-items: center;
 
     margin: $negative-margin_saleOff auto;
-    width: 80%;
+    width: 60%;
     gap: 2rem;
     padding: 1rem;
     
     background-color: #fff;
+}
+
+
+@include small-md {
+    .saleOff  {
+        display: none;
+    }
 }

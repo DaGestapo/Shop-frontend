@@ -1,0 +1,21 @@
+@import '../../styles/config';
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+
+
+.slider__header {
+    display: none;
+    justify-content: space-between;
+
+    h4,p {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+}
+
+@include small-md {
+    .slider__header {
+        display: flex;
+    }
+}

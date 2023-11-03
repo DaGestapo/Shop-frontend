@@ -1,6 +1,6 @@
 import {Dote} from './doteService';
 
-export class Slider {
+export class PriceSlider {
     private leftDote: Dote;
     private rightDote: Dote;
     private sliderEl: HTMLDivElement;
@@ -172,4 +172,4 @@ export class Slider {
     }
 }
 
-export type typeSlider = InstanceType<typeof Slider>;
+export type typeSlider = InstanceType<typeof PriceSlider>;

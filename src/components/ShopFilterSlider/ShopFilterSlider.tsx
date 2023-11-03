@@ -1,7 +1,7 @@
 import {FC, createRef, useEffect, useState} from 'react';
 import module from './ShopFilterSlider.module.scss';
 
-import { Slider, typeSlider } from '../../service/sliderService';
+import { PriceSlider, typeSlider } from '../../service/priceSliderService';
 import { IntervalType } from '../../utils/type-utf';
 
 import { PricesI } from '../../model/serviceModel/PriceI';
@@ -29,7 +29,7 @@ const ShopFilterSlider:FC<SidebarShopPropsI> = ({sidebar}) => {
       sidebar && 
       priceRangeRef.current
     ) {
-      setSlider( new Slider(
+      setSlider( new PriceSlider(
         priceRangeRef.current, 
         sidebar, 
         sliderRef.current, 

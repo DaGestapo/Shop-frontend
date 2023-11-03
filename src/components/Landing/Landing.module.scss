@@ -1,4 +1,7 @@
 @import '../../styles/variables';
+@import '../../styles/config';
+@import '../../styles/mixin.scss';
+
 
 .landing {
     background-image: url('../../styles/assets/landingImg.png');
@@ -17,5 +20,22 @@
     h1 {
         color: #fff;
         font-size: $ui-h1_font_size;
+    }
+}
+
+@include small-md {
+    .landing {
+       width: 90vw;
+       height: 15rem;
+       margin-left: 5vw;
+
+       background-image: url('../../styles/svg/Promotion\ Image.svg');
+       background-size: cover;
+
+       border-radius: 10px;
+
+       h1 {
+        display: none;
+       }
     }
 }

@@ -1,5 +1,6 @@
 @import '../../styles/mixin.scss';
 @import '../../styles/variables';
+@import '../../styles/config';
 
 .price {
     @include flex-justify_center;
@@ -7,6 +8,7 @@
     gap: $ui-price-left_gap;
     display: flex;
     justify-content: left;
+    flex-wrap: wrap;
     font-size: 20px;
     margin-top: 1rem;
 
@@ -24,5 +26,11 @@
 
     &_default {
         @include font-style-price;
+    }
+}
+
+@include small-md {
+    .price {
+        font-size: 16px;
     }
 }

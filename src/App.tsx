@@ -11,6 +11,7 @@ import { publicRoutes, authRoutes, adminRoutes, nonAuthRoutes } from './router/r
 import Header from './components/Header/Header';
 import Home from './pages/Home';
 import Footer from './components/Footer/Footer';
+import MobileMenu from './components/MobileMenu/MobileMenu';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -66,6 +67,7 @@ function App() {
             <Route path='*' Component={Home}/>
 
           </Routes>
+          <MobileMenu />
           <Footer />
         </BrowserRouter>
       </div>

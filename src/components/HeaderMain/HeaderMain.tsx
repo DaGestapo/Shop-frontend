@@ -71,7 +71,7 @@ const HeaderMain:FC<HeaderMainPropsI> = () => {
 
         <div className={module.search}>
           <FontAwesomeIcon icon={magGlassIcon}/>
-          <input type="text" />
+          <input type="text" placeholder='Search Product'/>
         </div>
         
     </section>

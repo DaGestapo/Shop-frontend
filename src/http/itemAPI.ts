@@ -88,3 +88,11 @@ export const getItemInfo = async(itemId: string): Promise<ItemInfoWithColorsSize
         throw new Error(`${error}`)
     }
 }
+
+export const getHotItems = async({limit, page}: ItemRequestParamsI): Promise<ItemFullI[]> => {
+    let URLRequest = `api/item?limit=${limit? limit: 8}&page=${page? page: 1}&hot=true`;
+
+    const response = await $host.get(URLRequest);
+    console.log(response);
+    return response.data;
+}

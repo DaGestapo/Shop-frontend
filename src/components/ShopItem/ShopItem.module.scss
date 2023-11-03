@@ -1,8 +1,11 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
+
 
 .shopItem {
     position: relative;
+    width: auto;
 
     &:hover {
         opacity: 0.9;
@@ -21,6 +24,12 @@
             text-align: left;
             font-size: $ui-h4_font_size;
         }
+
+        .ratingBlock {
+            width: 100%;
+            display: flex;
+            justify-content: left;
+        }
         
     }
     
@@ -34,3 +43,4 @@
     padding: 5px 15px;
     z-index: $z-index-cover;
 }
+
