@@ -1,5 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 .add {
     position: relative;
@@ -59,4 +60,10 @@
         margin-top: -7rem;
     }
     
+}
+
+@include small-md {
+    .add {
+        display: none;
+    }
 }

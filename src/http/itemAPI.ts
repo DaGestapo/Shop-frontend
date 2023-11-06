@@ -93,6 +93,28 @@ export const getHotItems = async({limit, page}: ItemRequestParamsI): Promise<Ite
     let URLRequest = `api/item?limit=${limit? limit: 8}&page=${page? page: 1}&hot=true`;
 
     const response = await $host.get(URLRequest);
-    console.log(response);
-    return response.data;
+    const items: ItemFullI[] = []
+
+    for(let i = 0; i < response.data.length; i++) {
+        const itemImage: ItemImgsI = {
+            id: response.data[i].item_imgs.id,
+            img: JSON.parse(response.data[i].item_imgs.img)
+        };
+
+        const itemInfo: ItemInfoWithColorsSizes = {
+            colors: JSON.parse(response.data[i].item_info.colors),
+            sizes: JSON.parse(response.data[i].item_info.sizes),
+            id: response.data[i].item_info.id,
+            description: response.data[i].item_info.description,
+            available: response.data[i].item_info.available
+        }
+
+         items.push({
+            ...response.data[i],
+            item_imgs: itemImage,
+            item_info: itemInfo
+        });
+    }
+    
+    return items;
 }

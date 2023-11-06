@@ -47,7 +47,12 @@ const MobileCategory: FC<MobileCategoryI> = () => {
    useEffect(() => {
         if(!listRef.current) return;
 
-        let elementSlider: TypeElementSlider | null = new ElementSlider(listRef.current, 100, 10);
+        let elementSlider: TypeElementSlider | null = new ElementSlider(
+            listRef.current, 
+            100, 
+            10, 
+            100, 3
+        );
 
         return () => {
             elementSlider = null;

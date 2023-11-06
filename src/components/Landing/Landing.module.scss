@@ -25,17 +25,16 @@
 
 @include small-md {
     .landing {
-       width: 90vw;
-       height: 15rem;
-       margin-left: 5vw;
+        width: 90vw;
+        height: 15rem;
 
-       background-image: url('../../styles/svg/Promotion\ Image.svg');
-       background-size: cover;
+        background-image: url('../../styles/svg/Promotion\ Image.svg');
+        background-size: cover;
 
-       border-radius: 10px;
+        border-radius: 10px;
 
-       h1 {
-        display: none;
-       }
+        h1 {
+            display: none;
+        }
     }
 }

@@ -1,0 +1,18 @@
+@import '../../styles/config';
+@import '../../styles/variables';
+
+
+.title {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 30px;
+
+    h4 {
+        position: absolute;
+        display: flex;
+        width: 100%;
+        text-align: left;
+        font-size: $ui-h4_font_size; 
+    }
+}

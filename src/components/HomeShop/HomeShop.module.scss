@@ -5,6 +5,7 @@
 .homeShop {
     @include flex-justify_center-aling_center;
     flex-direction: column;
+    align-items: center;
     margin-top: 10rem;
     
     gap: $ui-vertical_gap;
@@ -37,7 +38,8 @@
 
 @include medium-md {
     .homeShop {
-
+        width: 90vw;
+        
         .list {
             grid-template-columns: 25% 25% 25%;
         }
@@ -46,9 +48,10 @@
 
 @include small-md {
     .homeShop {
+        margin-top: 2rem;
 
         .list {
-            grid-template-columns: 20% 20% 20%;
+            grid-template-columns: 40% 40%;
         }
     }
 }

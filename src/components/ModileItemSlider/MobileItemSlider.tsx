@@ -28,7 +28,7 @@ const MobileItemSlider: FC<MobileItemSliderI> = ({children}) => {
     useEffect(() => {
         if(!listRef.current) return;
 
-        let elementSlider: TypeElementSlider | null = new ElementSlider(listRef.current, 150, 10);
+        let elementSlider: TypeElementSlider | null = new ElementSlider(listRef.current, 150, 10, 150, 2);
 
 
         return () => {
@@ -46,7 +46,6 @@ const MobileItemSlider: FC<MobileItemSliderI> = ({children}) => {
                    <ShopItem 
                         key={item.id + 'saleOff'}
                         position="absolute"
-                        width={150}
                         item={item}
                     />  
                 )}

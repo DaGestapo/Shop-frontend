@@ -1,10 +1,11 @@
-import {FC, createRef, MouseEvent} from 'react';
+import {FC, createRef, MouseEvent, useEffect} from 'react';
 import { FontAwesomeIcon,  } from '@fortawesome/react-fontawesome';
 import module from './ShopItem.module.scss';
 
 import ItemPopupOnImg from '../ItemPopupOnImg/ItemPopupOnImg';
 import ItemPrice from '../ItemPrice/ItemPrice';
 import Rating from '../Rating/Rating';
+import ShopItemTitle from '../ShopItemTitle/ShopItemTitle';
 
 import { useNavigate } from 'react-router-dom';
 import { useCalcRate } from '../../hooks/useCalcRate';
@@ -17,11 +18,11 @@ import { ItemShopI } from '../../model/stateModel/itemI';
 interface ShopItemI {
     item: ItemShopI;
     position?: 'absolute' | 'relative';
-    width?: number;
 }
 
-const ShopItem:FC<ShopItemI> = ({item, position, width}) => {
+const ShopItem:FC<ShopItemI> = ({item, position}) => {
     const divArticleRef = createRef<HTMLDivElement>();
+
     const navigate = useNavigate();
     const rate = useCalcRate(item.rating, starSolidIcon, starRegularIcon);
 
@@ -39,8 +40,7 @@ const ShopItem:FC<ShopItemI> = ({item, position, width}) => {
   return (
     <article 
         style={{
-            position: `${position? 'absolute': 'relative'}`,
-            width: `${width? width + 'px': ''}`
+            position: `${position? 'absolute': 'relative'}`
         }}
        
         className={module.shopItem}
@@ -54,18 +54,20 @@ const ShopItem:FC<ShopItemI> = ({item, position, width}) => {
       
         <section className={module.info}>
            
+            <ShopItemTitle>{item.name}</ShopItemTitle>
+            <div className={module.ratingBlock}>
+                { rate && 
+                    <Rating rating={item.rating}/>
+                }
+            </div>
+
             <ItemPrice 
                 price={item.price}
                 priceOff={item.priceOff}
                 saleOff={item.saleOff}
             />
     
-            <h4>{item.name}</h4>
-            <div className={module.ratingBlock}>
-                { rate && 
-                    <Rating rating={item.rating}/>
-                }
-            </div>
+    
         </section>
     </article>
   );

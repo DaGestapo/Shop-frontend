@@ -1,9 +1,11 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 .controle {
         display: flex;
         justify-content: center;
+        
         width: 100%;
         gap: $ui-left_gap;
 
@@ -22,5 +24,11 @@
             &:hover {
                 color: $main-blue;
             }
+        }
+    }
+
+    @include small-md {
+        .controle {
+            display: none;
         }
     }
