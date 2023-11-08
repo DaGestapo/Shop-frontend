@@ -1,5 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 .form {
     @include flex-justify_center-aling_center;
@@ -31,5 +32,11 @@
             opacity: 0.8;
         }
 
+    }
+}
+
+@include small-md {
+    .form {
+        display: none;
     }
 }

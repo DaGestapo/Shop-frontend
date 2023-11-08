@@ -13,6 +13,8 @@ import Home from './pages/Home';
 import Footer from './components/Footer/Footer';
 import MobileMenu from './components/MobileMenu/MobileMenu';
 
+import { resizeMobileList } from './utils/resizeMObileLists';
+
 function App() {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user);
@@ -26,6 +28,20 @@ function App() {
         dispatch( setUser(data) );
         const {balance} = await getBalance(data.id);
         dispatch(setUserBalance(balance));
+      }
+    }
+
+  }, []);
+
+  useEffect(() => {
+    const mobileLists: NodeListOf<HTMLElement> = document.documentElement.querySelectorAll('.mobileList');
+  
+    if(!mobileLists) return;
+
+
+    window.onresize = (e) => {
+      for(let i = 0; i < mobileLists.length; i++) {
+        resizeMobileList(mobileLists[i])
       }
     }
 

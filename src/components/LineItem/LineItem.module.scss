@@ -7,11 +7,11 @@
     grid-template-columns: auto 65%;
     gap: 5%;
     align-items: center;
-    width: 100%;
+    width: auto;
     border: 2px solid transparent;
     border-radius: 25px;
     cursor: pointer;
-    padding: 1rem 2rem;
+    padding: 10px;
     overflow: hidden;
 
     &::before {

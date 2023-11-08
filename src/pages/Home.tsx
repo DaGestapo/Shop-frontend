@@ -10,6 +10,7 @@ import FeaturedProduct from '../components/FeaturedProduct/FeaturedProduct';
 import SearchUI from '../UI/SearchUI/SearchUI';
 import MobileCategory from '../components/MobileCategory/MobileCategory';
 import MobileItemSlider from '../components/ModileItemSlider/MobileItemSlider';
+import MobileAdd from '../components/MobileAdd/MobileAdd';
 
 
 interface HomePropsI {
@@ -24,6 +25,12 @@ const Home:FC<HomePropsI> = () => {
       <MobileItemSlider>
         Flash Sale
       </MobileItemSlider>
+
+      <MobileItemSlider>
+        Mega Sale
+      </MobileItemSlider>
+
+      <MobileAdd />
       
       <HomeSaleOff />
       <HomeShop />

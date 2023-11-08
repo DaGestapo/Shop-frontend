@@ -6,9 +6,9 @@ import ShopItem from "../ShopItem/ShopItem";
 
 import { getHotItems } from "../../http/itemAPI";
 import { ItemFullI } from "../../model/stateModel/itemI";
-import { ElementSlider } from "../../service/elementSlider";
+import { ItemSlider } from "../../service/itemSlider";
 
-import { TypeElementSlider } from "../../service/elementSlider";
+import { TypeElementSlider } from "../../service/itemSlider";
 
 interface MobileItemSliderI extends PropsWithChildren {
 
@@ -28,7 +28,7 @@ const MobileItemSlider: FC<MobileItemSliderI> = ({children}) => {
     useEffect(() => {
         if(!listRef.current) return;
 
-        let elementSlider: TypeElementSlider | null = new ElementSlider(listRef.current, 150, 10, 150, 2);
+        let elementSlider: TypeElementSlider | null = new ItemSlider(listRef.current, 150, 10, 150, 2);
 
 
         return () => {
@@ -41,7 +41,7 @@ const MobileItemSlider: FC<MobileItemSliderI> = ({children}) => {
             <MobileSliderHeader>
                {children}
             </MobileSliderHeader>
-            <section ref={listRef} className={module.itemSlider__list}>
+            <section ref={listRef} className={`${module.itemSlider__list} mobileList`}>
                 {items.map(item => 
                    <ShopItem 
                         key={item.id + 'saleOff'}

@@ -1,10 +1,11 @@
-import {FC, useEffect, useState, createRef, PointerEvent, useMemo, memo} from 'react';
+import {FC, useEffect, createRef} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import module from './MobileCategory.module.scss';
 
 import MobileSliderHeader from '../MobileSliderHeader/MobileSliderHeader';
 
-import { ElementSlider, TypeElementSlider } from '../../service/elementSlider';
+
+import { ItemSlider, TypeElementSlider } from '../../service/itemSlider';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxTypedHools';
 import { setCategiryes } from '../../store/redusers/categoryReduser';
 
@@ -21,6 +22,8 @@ interface MobileCategoryI {
 
 const MobileCategory: FC<MobileCategoryI> = () => {
     const listRef = createRef<HTMLElement>();
+    const mobileCategoryRef = createRef<HTMLElement>();
+
     const category = useAppSelector(state => state.category);
     const dispatch = useAppDispatch();
 
@@ -47,7 +50,7 @@ const MobileCategory: FC<MobileCategoryI> = () => {
    useEffect(() => {
         if(!listRef.current) return;
 
-        let elementSlider: TypeElementSlider | null = new ElementSlider(
+        let elementSlider: TypeElementSlider | null = new ItemSlider(
             listRef.current, 
             100, 
             10, 
@@ -60,11 +63,14 @@ const MobileCategory: FC<MobileCategoryI> = () => {
    }, [category]);
 
     return (
-        <article className={module.mobileCategory}>
+        <article 
+            className={module.mobileCategory}
+            ref={mobileCategoryRef}
+            >
             <MobileSliderHeader>
                 Category
             </MobileSliderHeader>
-            <section ref={listRef} className={module.mobileCategory__list}>
+            <section ref={listRef} className={`${module.mobileCategory__list} mobileList`}>
                 {category.list.map((option, index) => 
                     <article 
                         className={`${module.mobileCategory__list_item}`}

@@ -1,5 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 
 .news {
@@ -16,4 +17,10 @@
         text-align: center;
     }
 
+}
+
+@include small-md {
+    .news {
+        display: none;
+    }
 }
