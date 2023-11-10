@@ -41,3 +41,12 @@
         color: $main-blue; 
     }
 }
+
+.false {
+    border: 1px solid $main-red;
+    color: $main-red;
+
+    svg {
+        color: $main-red; 
+    }
+}

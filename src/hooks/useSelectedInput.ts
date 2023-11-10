@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
 
-export const useSelectedInput = (calssName: string) => {
+export const useSelectedInput = (selectedName: string) => {
     const [selectedDiv, setSelectedDiv] = useState<HTMLDivElement | null>(null);
   
     useEffect(() => {
       if(!selectedDiv) return;
-      selectedDiv.classList.toggle(calssName);
+ 
+      selectedDiv.classList.toggle(selectedName);
   
       return () => {
-        selectedDiv.classList.toggle(calssName);
+        selectedDiv.classList.toggle(selectedName);
       }
     }, [selectedDiv, setSelectedDiv]);
 

@@ -1,17 +1,24 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, Dispatch } from "react";
+import { RegistrationDataI } from "../model/userI";
 
-
-export const useInputData = <T>(initialObj: T): [T, Function] => {
+export const useInputData = <T>(initialObj: T)
+: [
+    T,
+    Dispatch<React.SetStateAction<T>>,
+     Function
+    ] => {
     const [data, setData] = useState<T>(initialObj);
 
     const changeFunc = ( fieldName: string) => {
         return (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            
             for(let key in data) {
                 if(key === fieldName) {
-                    setData({...data, [fieldName]: e.target.value})
+                    setData({...data, [fieldName]: e.target.value});
                 }
+                
             }
         }
         }
-    return [data, changeFunc];
+    return [data, setData, changeFunc, ];
 }

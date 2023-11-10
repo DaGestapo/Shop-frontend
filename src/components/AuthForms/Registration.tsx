@@ -1,4 +1,4 @@
-import {FC, useState, Dispatch, ChangeEvent} from 'react';
+import {FC, useState, Dispatch, ChangeEvent, useEffect} from 'react';
 import module from './Forms.module.scss';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxTypedHools'; 
 import {setUser} from '../../store/redusers/userReduser';
@@ -15,14 +15,26 @@ export interface RegistrationPropsI {
 
 const Registration:FC<RegistrationPropsI> = () => {
   const dispatch = useAppDispatch();
-  const [data, changeFunc] = useInputData<RegistrationDataI>({
+  const [data, setData, changeFunc] = useInputData<RegistrationDataI>({
     username: '',
     email: '',
     password: '',
     passwordAgain: '',
+    isEqualPassword: true,
   });
 
+  useEffect(() => {
+    if(data.password !== data.passwordAgain) {
+      setData({...data, isEqualPassword: false})
+    } else {
+      setData({...data, isEqualPassword: true})
+    }
+  }, [data.password, data.passwordAgain]);
+
+
+  
   async function registrate () {
+
     const responce: UserI = await registration(
       data.username,
       data.email,
@@ -31,6 +43,8 @@ const Registration:FC<RegistrationPropsI> = () => {
     
     dispatch(setUser(responce))
   }
+
+
 
   return (
     <form 
@@ -56,8 +70,9 @@ const Registration:FC<RegistrationPropsI> = () => {
 
       <FormInputUI 
         icon={lockIcon}
-        placeholder={'Password again...'}
+        placeholder={'Password...'}
         value={data.password}
+        checkValue={data.isEqualPassword}
         setValue={
           changeFunc('password')
         }
@@ -67,6 +82,7 @@ const Registration:FC<RegistrationPropsI> = () => {
         icon={lockIcon}
         placeholder={'Password again...'}
         value={data.passwordAgain}
+        checkValue={data.isEqualPassword}
         setValue={
           changeFunc('passwordAgain')
         }

@@ -15,6 +15,7 @@ export interface UserI {
     email: string;
     password: string;
     passwordAgain: string;
+    isEqualPassword: boolean;
   }
 
   export interface LoginDataI {

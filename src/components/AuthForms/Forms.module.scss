@@ -1,5 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 .form {
     @include flex-column-aling_center;
@@ -8,11 +9,15 @@
 
     gap: $ui-vertical_gap;
 
+    input {
+        font-size: 20px;
+    }
 
     button {
         width: 100%;
         font-size: 28px;
         font-weight: 500;
+        border-radius: 5px;
 
         cursor: pointer;
 
@@ -21,4 +26,13 @@
         }
     }
 
+}
+
+@include small-md {
+    .form {
+
+        button {
+            font-size: 20px;
+        }
+    }
 }

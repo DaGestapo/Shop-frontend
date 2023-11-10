@@ -1,19 +1,20 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 .auth {
     @include flex-column-aling_center;
     justify-content: center;
 
 
-    width: 40%;
+    width: 60%;
 
     padding: 1rem;
     margin-top: 3rem;
     gap: 1rem;
 
     img {
-        width: 10%;
+        width: 20%;
     }
 
     h1 {
@@ -26,6 +27,7 @@
         color: $main-gray;
         font-size: 28px;
         font-weight: 600;
+        text-align: center;
     }
 
     button {
@@ -37,6 +39,10 @@
 
         &:hover {
             opacity: 0.8;
+        }
+
+        img {
+            width: 10%;
         }
     }
 
@@ -61,8 +67,8 @@
     .changeLanding {
         @include flex-column-aling_center;
         
-
         p {
+            text-align: center;
             font-size: 24px;
         }
 
@@ -73,6 +79,55 @@
             &:hover {
                 opacity: 0.8;
             }
+        }
+    }
+}
+
+@include medium-md {
+    .auth {
+        width: 100vw;
+        padding: 10px;
+    }
+}
+
+@include small-md {
+
+    .auth {
+        width: 100vw;
+        padding: 10px;
+
+        form {
+            width: 90%;
+        }
+
+        img {
+            width: 30%;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        p {
+            font-size: 24px;
+        }
+
+
+        .social { 
+            font-size: 20px;
+        }
+
+        .changeLanding {
+
+            p {
+                font-size: 20px;
+            }
+        }
+
+        
+
+        button {
+            font-size: 24px;
         }
     }
 }

@@ -9,7 +9,7 @@ interface ContactFormropsI {
 }
 
 const ContactForm:FC<ContactFormropsI> = () => {
-  const [data, changeDataByFieldName] = useInputData({
+  const [data, setData, changeDataByFieldName] = useInputData({
     name: '',
     email: '',
     message: ''

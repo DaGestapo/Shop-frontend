@@ -11,6 +11,7 @@ interface FormInputUII {
     border?: string;
     placeholder: string;
     value: string;
+    checkValue?: boolean;
     setValue: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -19,16 +20,28 @@ const FormInputUI: FC<FormInputUII> = ({
     placeholder,
     value,
     border,
+    checkValue,
     setValue
 }) => {
     const onFocusInput = useSelectedInput(module.selected);
     const divRef = createRef<HTMLDivElement>();
 
     useEffect(() => {
-        if(border === 'gray' && divRef.current) {
+        if(!divRef.current) return;
+        if(!checkValue && checkValue !== undefined) {
+            divRef.current.classList.add(module.false);
+        } else {
+            divRef.current.classList.remove(module.false);
+        }
+
+        if(border === 'gray') {
             divRef.current.classList.add(module.inputUi_gray);
         } 
-    }, []);
+
+
+    }, [checkValue]);
+
+
     return (
         <div 
             className={module.inputUi}

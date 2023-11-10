@@ -22,7 +22,7 @@ interface LoginPropsI {
 
 const Login:FC<LoginPropsI> = () => {
   const dispatch = useAppDispatch();
-  const [data, changeFunc] = useInputData<LoginDataI>({
+  const [data, setData, changeFunc] = useInputData<LoginDataI>({
     email: '',
     password: ''
   })
