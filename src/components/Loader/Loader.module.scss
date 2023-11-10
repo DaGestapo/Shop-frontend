@@ -1,5 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 @keyframes rotate {
     from {
@@ -26,4 +27,18 @@
         margin-top: 2rem;
         font-size: 24px;
     }
+}
+
+@include small-md {
+    .loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: $main-blue;
+        color: #fff;
+
+        z-index: $z-index-mobile-loader;
+    }    
 }
