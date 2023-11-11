@@ -28,22 +28,16 @@ const MobileCategory: FC<MobileCategoryI> = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        let options:OptionsI[] = [];
+        loadOptions();
 
-        getAllTypes()
-            .then(data => {
-                for(let i=0; i < data.length; i++) {
-                    
-                    options.push(data[i]);
-                }
-            });
-        getAllBrands()
-            .then(data => {
-                for(let i=0; i < data.length; i++) {
-                    options.push(data[i]);
-                }
-                dispatch(setCategiryes(options));
-            })
+        async function loadOptions() {
+            let typesOptions = await getAllTypes();
+            let brandsOprions = await getAllBrands();
+
+            let options = typesOptions.concat(brandsOprions);
+
+            dispatch(setCategiryes(options));
+        }
         
     }, []);
 

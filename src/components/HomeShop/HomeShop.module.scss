@@ -32,8 +32,12 @@
         justify-content: center;
        
 
-        gap: $ui-horizont_gap;
+        gap: 3rem;
     }
+}
+
+.hide {
+    display: none;
 }
 
 @include medium-md {
@@ -42,6 +46,7 @@
         
         .list {
             grid-template-columns: 25% 25% 25%;
+            gap: 2rem;
         }
     }
 }
@@ -56,6 +61,22 @@
 
         h2 {
             display: none;
+        }
+
+        button {
+            margin-top: 2rem;
+            width: 100%;
+            background-color: $main-blue;
+            
+            padding: 10px;
+
+            color: #fff;
+            border-radius: 10px;
+
+            &:hover {
+                opacity: 0.8;
+                color: #fff;
+            }
         }
     }
 }

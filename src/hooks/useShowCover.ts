@@ -8,8 +8,10 @@ export const useShowCover = (
     ) => {
 
     useEffect(() => {
-        item.current?.addEventListener('mouseenter', setCoverDiv);
-        item.current?.addEventListener('mouseleave', hideCover);
+        if(!cover.current || !item.current) return;
+
+        item.current.addEventListener('mouseenter', setCoverDiv);
+        item.current.addEventListener('mouseleave', hideCover);
 
         function setCoverDiv () {
             if(!cover.current || !img.current) return;  

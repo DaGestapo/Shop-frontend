@@ -8,11 +8,10 @@
     grid-template-columns: auto auto auto;
     justify-content: center;
 
+    padding: 2rem;
     margin: $negative-margin_saleOff auto;
-    width: 60%;
-   
+    width: fit-content;
     gap: 2rem;
-    padding: 1rem;
     
     background-color: #fff;
 }
@@ -21,5 +20,12 @@
 @include small-md {
     .saleOff  {
         display: none;
+    }
+}
+
+
+@include medium-md {
+    .saleOff  {
+        width: 80%;
     }
 }

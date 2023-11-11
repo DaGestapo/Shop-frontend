@@ -6,6 +6,7 @@ export interface PaginationI {
     page: number;
     type: number;
     listener: boolean;
+    listLength: number;
   }
   
 export const usePagination = (
@@ -14,13 +15,14 @@ export const usePagination = (
   ) : [
       state: PaginationI, 
       setState: React.Dispatch<React.SetStateAction<PaginationI>>,
-      loadNewPage: (pages: number) => void
+      loadNewPage: (pages: number) => boolean
   ] => {
     const loader = useLoader(8);
     const [state, setState] = useState<PaginationI>({
         type: typeId? typeId : 0,
         page: 1,
-        listener: false
+        listener: false,
+        listLength: 0
       });
     const isPaginationEnd = useMemo((): boolean => {
         if(!items) return false;
@@ -35,12 +37,19 @@ export const usePagination = (
         }
     }, [state.listener]);
 
-    const listener = (pages: number) => {
+    const listener = (pages: number): boolean => {
+      if(!items) return false;
+
+      if(items.length === state.listLength) return false;
+
       setState({
         ...state, 
         page: pages+1,
-        listener: !state.listener
+        listener: !state.listener,
+        listLength: items.length
       });
+
+      return true;
     }
 
     return [state, setState, listener];

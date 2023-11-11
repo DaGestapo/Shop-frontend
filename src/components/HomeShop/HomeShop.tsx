@@ -1,4 +1,4 @@
-import {FC, useEffect} from 'react';
+import {FC, useEffect, createRef, PointerEvent} from 'react';
 import module from './HomeShop.module.scss';
 
 import ShopItem from '../ShopItem/ShopItem';
@@ -15,10 +15,12 @@ export interface PaginationI {
   page: number;
   type: number;
   listener: boolean;
+  listLength: number;
 }
 
 const HomeShop:FC<HomeShopPropsI> = () => {
   const loader = useLoader(8);
+  const buttonRef = createRef<HTMLButtonElement>();
   const [items, typeId, setTypeId] = useGetItemByCallback(loader());
   const [
     paginationOptions, 
@@ -29,6 +31,30 @@ const HomeShop:FC<HomeShopPropsI> = () => {
   useEffect(() => {
     setTypeId(0);
   }, []);
+
+  useEffect(() => {
+    if(!buttonRef.current || !items) return;
+    
+    if(items.length % 8 === 0) {
+      buttonRef.current.classList.remove(module.hide);
+    } else {
+      buttonRef.current.classList.add(module.hide);
+    }
+  }, [items])
+
+  const clickEventHandler = (e: PointerEvent<HTMLButtonElement>) => {
+    if(!buttonRef.current) return;
+
+
+
+    const chekcer = loadNewPage(paginationOptions.page);
+
+    if(!chekcer) {
+      buttonRef.current.classList.add(module.hide);
+    } else {
+      buttonRef.current.classList.remove(module.hide);
+    }
+  }
    
   return (
     <section className={module.homeShop}>
@@ -48,7 +74,8 @@ const HomeShop:FC<HomeShopPropsI> = () => {
         )}
       </div>
       <button 
-        onClick={() => loadNewPage(paginationOptions.page)}
+        ref={buttonRef}
+        onClick={clickEventHandler}
         >LOAD MORE</button>
     </section>
   );
