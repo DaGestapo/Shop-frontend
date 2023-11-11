@@ -2,8 +2,7 @@ import {FC, useEffect, createRef} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import module from './MobileMenu.module.scss';
 
-import { userIcon } from '../../utils/icons-utf';
-
+import { userIcon, homeIcon, magGlassIcon, cartIcon, tagsIcon } from '../../utils/icons-utf';
 
 import {NavLink} from 'react-router-dom';
 import { CART_ROUTE, HOME_ROUTE, PROFILE_ROUTE, SHOP_ROUTE } from '../../utils/routeConst-utf';
@@ -45,19 +44,19 @@ const MobileMenu: FC<MobileMenuI> = () => {
             className={module.mobileMenu}
             >
             <NavLink to={HOME_ROUTE}>
-            <FontAwesomeIcon icon={userIcon}/>
+            <FontAwesomeIcon icon={homeIcon}/>
                 Home
             </NavLink>
             <NavLink to={HOME_ROUTE}>
-                <FontAwesomeIcon icon={userIcon}/>
+                <FontAwesomeIcon icon={magGlassIcon}/>
                 Explore
             </NavLink>
             <NavLink to={CART_ROUTE}>
-                <FontAwesomeIcon icon={userIcon}/>
+                <FontAwesomeIcon icon={cartIcon}/>
                 Cart
             </NavLink>
             <NavLink to={SHOP_ROUTE}>
-                <FontAwesomeIcon icon={userIcon}/>
+                <FontAwesomeIcon icon={tagsIcon}/>
                 Offer
             </NavLink>
             <NavLink to={PROFILE_ROUTE}>

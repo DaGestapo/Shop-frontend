@@ -19,3 +19,5 @@ export const envelopeIcon = icon({name: 'envelope', style: 'regular'});
 export const lockIcon = icon({name: 'lock'});
 export const crossIcon = icon({name: 'xmark', style: 'solid'});
  
+export const homeIcon = icon({name: 'house', style: 'solid'});
+export const tagsIcon = icon({name: 'tags', style: 'solid'});
