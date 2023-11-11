@@ -34,7 +34,7 @@ const HomeShop:FC<HomeShopPropsI> = () => {
 
   useEffect(() => {
     if(!buttonRef.current || !items) return;
-    
+
     if(items.length % 8 === 0) {
       buttonRef.current.classList.remove(module.hide);
     } else {
@@ -42,19 +42,6 @@ const HomeShop:FC<HomeShopPropsI> = () => {
     }
   }, [items])
 
-  const clickEventHandler = (e: PointerEvent<HTMLButtonElement>) => {
-    if(!buttonRef.current) return;
-
-
-
-    const chekcer = loadNewPage(paginationOptions.page);
-
-    if(!chekcer) {
-      buttonRef.current.classList.add(module.hide);
-    } else {
-      buttonRef.current.classList.remove(module.hide);
-    }
-  }
    
   return (
     <section className={module.homeShop}>
@@ -75,7 +62,7 @@ const HomeShop:FC<HomeShopPropsI> = () => {
       </div>
       <button 
         ref={buttonRef}
-        onClick={clickEventHandler}
+        onClick={() => loadNewPage(paginationOptions.page)}
         >LOAD MORE</button>
     </section>
   );

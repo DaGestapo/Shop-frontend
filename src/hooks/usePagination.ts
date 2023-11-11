@@ -15,7 +15,7 @@ export const usePagination = (
   ) : [
       state: PaginationI, 
       setState: React.Dispatch<React.SetStateAction<PaginationI>>,
-      loadNewPage: (pages: number) => boolean
+      loadNewPage: (pages: number) => void
   ] => {
     const loader = useLoader(8);
     const [state, setState] = useState<PaginationI>({
@@ -37,10 +37,10 @@ export const usePagination = (
         }
     }, [state.listener]);
 
-    const listener = (pages: number): boolean => {
-      if(!items) return false;
+    const listener = (pages: number): void => {
+      if(!items) return;
 
-      if(items.length === state.listLength) return false;
+      if(items.length === state.listLength) return;
 
       setState({
         ...state, 
@@ -48,8 +48,6 @@ export const usePagination = (
         listener: !state.listener,
         listLength: items.length
       });
-
-      return true;
     }
 
     return [state, setState, listener];
