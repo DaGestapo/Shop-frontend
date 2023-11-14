@@ -46,14 +46,14 @@
 
 @include medium-md {
     .shopItem {
-        height: 25vh;
-        width: 20vw;
+        height: auto;
+        width: 100%;
     }
 } 
 
 @include small-md {
     .shopItem {
-        height: 25vh;
+        height: auto;
         width: 100%;
     }
 } 

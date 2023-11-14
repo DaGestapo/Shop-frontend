@@ -1,0 +1,109 @@
+@import '../../styles/variables';
+@import '../../styles/config';
+
+
+.mobileSearch {
+    display: none;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10px;
+
+    svg:nth-child(2) {
+        display: none;
+        height: 20px;
+        margin-right: 5vw;
+        color: $main-gray;
+    }
+}
+
+.search {
+    display: none;
+    align-items: center;
+    border: 1px solid transparent;
+
+    padding: 10px 15px;
+    font-size: 18px;
+
+    width: 85vw;
+
+    input {
+        font-size: 18px;
+        border: none;
+        height: 100%;
+        width: 100%;
+        margin-left: 10px;
+        outline: none;
+    }
+
+    svg {
+        color: $main-blue;
+    }
+    svg:nth-child(1) {
+        height: 15px;
+    }
+    
+    svg:nth-child(3) {
+        color: $main-gray;
+        cursor: pointer;
+
+        &:hover {
+            color: $main-blue;
+        }
+    }
+    
+    svg:nth-child(4) {
+        margin-left: 10px;
+        color: $main-gray;
+        cursor: pointer;
+        
+        &:hover {
+            color: $main-blue;
+        }
+    }
+
+    svg:nth-child(5) {
+        display: none;
+        margin-left: 10px;
+        color: $main-gray;
+        cursor: pointer;
+        
+        &:hover {
+            color: $main-blue;
+        }
+    }
+}
+
+.focus {
+
+    svg:nth-child(2) {
+        display: block;
+    }
+
+    .search {
+        border: 1px solid $main-blue;
+        width: 75vw;
+
+        svg:nth-child(3) {
+            display: none;
+        }
+        
+        svg:nth-child(4) {
+        display: none;
+        }
+
+        svg:nth-child(5) {
+            display: block;
+        }
+    }
+    
+}
+
+@include small-md {
+    .mobileSearch {
+        display: flex;
+    }
+
+    .search {
+        display: flex;
+    }
+}

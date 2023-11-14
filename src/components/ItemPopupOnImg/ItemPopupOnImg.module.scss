@@ -3,7 +3,6 @@
 @import '../../styles/config';
 
 .swichBlock {
-
     position: relative;
     width: auto;
     height: auto;
@@ -53,20 +52,25 @@
     }
 }
 
-@include small-md {
-    .swichBlock {
-        height: auto;
-
-        
-    }
-}
 
 @include medium-md {
     .swichBlock {
         height: auto;
 
         img {
-            height: 15vh;
+            height: 25vh;
         }
+    }
+}
+
+@include small-md {
+    .swichBlock {
+        height: auto;
+        
+        img {
+            height: 18vh;
+        }
+
+        
     }
 }

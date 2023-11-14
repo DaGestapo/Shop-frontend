@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import '../../styles/config'; 
 
 .routeList {
     display: flex;
@@ -21,5 +22,11 @@
         &:hover {
             color: $main-blue;
         }   
+    }
+}
+
+@include small-md {
+    .routeList {
+        display: none;
     }
 }

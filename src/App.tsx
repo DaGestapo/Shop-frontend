@@ -12,6 +12,7 @@ import Header from './components/Header/Header';
 import Home from './pages/Home';
 import Footer from './components/Footer/Footer';
 import MobileMenu from './components/MobileMenu/MobileMenu';
+import MobileSearch from './components/MobileSearch/MobileSearch';
 
 import { resizeMobileList } from './utils/resizeMObileLists';
 
@@ -50,6 +51,7 @@ function App() {
   return (
       <div className="app">
         <BrowserRouter>
+        <MobileSearch />
           <Header/>
           <Routes>
             {publicRoutes.map(route => 

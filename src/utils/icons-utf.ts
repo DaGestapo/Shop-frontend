@@ -21,3 +21,5 @@ export const crossIcon = icon({name: 'xmark', style: 'solid'});
  
 export const homeIcon = icon({name: 'house', style: 'solid'});
 export const tagsIcon = icon({name: 'tags', style: 'solid'});
+export const bellIcon = icon({name: 'bell', style: 'regular'});
+export const microfoneIcon = icon({name: 'microphone', style:'solid'});
