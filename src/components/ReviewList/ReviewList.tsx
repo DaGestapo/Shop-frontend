@@ -10,9 +10,10 @@ import { ReviewI } from '../../model/stateModel/reviewI';
 interface ReviewListI {
     reviews : ReviewI[];
     itemId: string;
+    showOne: boolean;
 }
 
-const ReviewList: FC<ReviewListI> = ({reviews, itemId}) => {
+const ReviewList: FC<ReviewListI> = ({reviews, itemId, showOne}) => {
     const currentUser = useAppSelector(state => state.user); 
 
     if(reviews.length === 0) {
@@ -23,12 +24,20 @@ const ReviewList: FC<ReviewListI> = ({reviews, itemId}) => {
     else {
         return (
             <section>
-                {reviews.map(review => 
-                       <Review 
-                        key={review.id}
+                {showOne && 
+                    <Review 
                         itemId={itemId}
-                        review={review}
-                       /> 
+                        review={reviews[0]}
+                    /> 
+                }
+                {reviews.map(review => 
+                        !showOne 
+                        ?  <Review 
+                            key={review.id}
+                            itemId={itemId}
+                            review={review}
+                        /> 
+                        : null
                 )}
             </section>
         )

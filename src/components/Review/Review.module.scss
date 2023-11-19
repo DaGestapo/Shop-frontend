@@ -1,5 +1,6 @@
 @import '../../styles//variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 .reviewArticle {
     margin-top: 25px;
@@ -72,5 +73,13 @@
 
     .open {
         display: block;
+    }
+}
+
+@include small-md {
+    .reviewArticle {
+        &__review {
+            width: 100%;
+        }
     }
 }

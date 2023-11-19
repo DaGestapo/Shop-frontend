@@ -1,6 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss'; 
-
+@import '../../styles/config';
 
 .itemInformation {
     margin-top: 2rem;
@@ -34,5 +34,11 @@
         &:hover {
             color: $main-blue;
         }
+    }
+}
+
+@include small-md {
+    .itemInformation {
+        display: none;
     }
 }

@@ -1,0 +1,156 @@
+@import '../../styles/variables';
+@import '../../styles/mixin.scss';
+@import '../../styles/config';
+
+.mobileCurrentItem {
+    display: none;
+    flex-direction: column;
+    width: 80vw;
+
+    h3 {
+        font-size: 24px;
+    }
+
+
+    section {
+        margin-top: 20px;
+
+        article, p {
+            margin-top: 5px;
+        }
+    }
+
+    .imgSection {
+        width: 100%;
+
+        &__buttons {
+            margin-top: 10px;
+        }
+
+        button {
+            width: 15px;
+            height: 15px;
+
+            background-color: #e4e4e4;
+            
+            border-radius: 50%;
+
+            cursor: pointer;
+
+
+            &:hover {
+                background-color: rgba($main-blue, 0.4);
+            }
+        }
+    
+        .select {
+            background-color: $main-blue;
+        }
+
+        &__mainImg {
+
+            img {
+                
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+
+        }
+
+        &__buttons {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+    }
+
+    .information {
+        margin-top: 20px;
+    }
+
+    .list {
+        position: relative;
+        display: flex;
+        gap: 30px;
+        height: 70px;
+
+        overflow: hidden;
+
+        article {
+            position: absolute;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 50px;
+
+            border-radius: 50%;
+            border: 2px solid #cacaca;
+
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+    
+            &:hover {
+                border: 2px solid $main-blue;
+            }
+        }
+    }
+
+    .review {
+        margin-top: 20px;
+
+        display: grid;
+        grid-template-columns: auto 30%;
+        grid-template-rows: 100%;
+
+        .rating {
+            grid-column: 1 / span 2;
+        }
+
+        section {
+            grid-column: 1 / span 2;
+        }
+
+        &_button {
+            font-size: 20px;
+            font-weight: 600;
+            color: $main-blue;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .addToCart {
+        width: 100%;
+        background-color: $main-blue;
+        color: #fff;
+
+        font-size: 24px;
+        font-weight: 500;
+
+        margin-top: 20px;
+        border-radius: 10px;
+
+        padding: 10px;      
+        
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+@include small-md {
+    .mobileCurrentItem {
+        display: flex;
+    }
+}

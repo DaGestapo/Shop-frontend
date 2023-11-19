@@ -18,12 +18,14 @@ export class ElementSlider extends Slider {
             let maxHeight = 0;
             for(let i=0; i < listItem.length; i++) {
                 let itemHeight = listItem[i].getBoundingClientRect().height;
+          
                 if(maxHeight < itemHeight) {
-                    maxHeight = itemHeight;
+                    maxHeight = itemHeight + 20;
                 }
             }
-
-            this.element.style.height = `${maxHeight}px`;
+            if(maxHeight > 0) {
+                this.element.style.height = `${maxHeight}px`;
+            }
         }, 1000);
      
     }

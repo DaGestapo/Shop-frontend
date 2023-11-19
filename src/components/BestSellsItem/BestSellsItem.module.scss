@@ -1,5 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
 
 .bestSells {
     position: relative;
@@ -39,3 +40,16 @@
         justify-content: center;
     }
 }
+
+@include medium-md {
+    .bestSells {
+        display: none;
+    }
+}
+
+@include small-md {
+    .bestSells {
+        display: none;
+    }
+} 
+

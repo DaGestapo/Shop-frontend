@@ -11,10 +11,10 @@ import { ItemSlider } from "../../service/itemSlider";
 import { TypeElementSlider } from "../../service/itemSlider";
 
 interface MobileItemSliderI extends PropsWithChildren {
-
+    showLink: boolean;
 }
 
-const MobileItemSlider: FC<MobileItemSliderI> = ({children}) => {
+const MobileItemSlider: FC<MobileItemSliderI> = ({children, showLink}) => {
     const [items, setItems] = useState<ItemFullI[]>([]);
     const listRef = createRef<HTMLElement>();
 
@@ -28,7 +28,12 @@ const MobileItemSlider: FC<MobileItemSliderI> = ({children}) => {
     useEffect(() => {
         if(!listRef.current) return;
 
-        let elementSlider: TypeElementSlider | null = new ItemSlider(listRef.current, 150, 10, 150, 2);
+        let elementSlider: TypeElementSlider | null = new ItemSlider(
+            listRef.current, 
+            150, 
+            10, 
+            150, 
+            3);
 
 
         return () => {
@@ -38,7 +43,7 @@ const MobileItemSlider: FC<MobileItemSliderI> = ({children}) => {
 
     return (
         <article className={module.itemSlider}>
-            <MobileSliderHeader>
+            <MobileSliderHeader showLink={showLink}>
                {children}
             </MobileSliderHeader>
             <section ref={listRef} className={`${module.itemSlider__list} mobileList`}>

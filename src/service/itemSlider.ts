@@ -44,6 +44,7 @@ export class ItemSlider extends ElementSlider {
         }
 
         for(let i=0; i<articles.length; i++) {
+            console.log(currentMovePosition, i, this.moveStep)
             articles[i].style.transform = `translateX(
                 ${(currentMovePosition + i) * this.moveStep}px
             )`
@@ -60,7 +61,10 @@ export class ItemSlider extends ElementSlider {
 
 
         for(let i=0; i<this.articlesNode.length; i++) {
-            this.articlesNode[i].style.width = `${this.width}px`;
+            if(this.width !== 0) {
+                this.articlesNode[i].style.width = `${this.width}px`;
+            }
+            
             this.articlesNode[i].style.transform = `translateX(${i * this.moveStep}px)`;
             if(i === 0) continue;
             this.articlesNode[i].style.paddingLeft = `${this.padding}px`;

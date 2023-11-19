@@ -1,5 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss'; 
+@import '../../styles/config';
 
 .relatedItemList {
     display: flex;
@@ -16,5 +17,11 @@
         margin-top: 2rem;
         display: flex;
         gap: 1rem;
+    }
+}
+
+@include small-md {
+    .relatedItemList {
+        display: none;
     }
 }

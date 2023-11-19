@@ -48,7 +48,8 @@ const MobileCategory: FC<MobileCategoryI> = () => {
             listRef.current, 
             100, 
             10, 
-            100, 3
+            100, 
+            4
         );
 
         return () => {
@@ -61,7 +62,7 @@ const MobileCategory: FC<MobileCategoryI> = () => {
             className={module.mobileCategory}
             ref={mobileCategoryRef}
             >
-            <MobileSliderHeader>
+            <MobileSliderHeader showLink={true}>
                 Category
             </MobileSliderHeader>
             <section ref={listRef} className={`${module.mobileCategory__list} mobileList`}>

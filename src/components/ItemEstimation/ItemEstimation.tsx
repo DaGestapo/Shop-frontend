@@ -113,13 +113,15 @@ const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId, showSum
                 )}
             </div>
         }
-        <p>{reviewNumber} reviews</p>
-        {showSumbit &&
-            <button 
-                className={module.openPopup}
-                onClick={openPopup}
-                >Submit a reaview</button>
-        }
+        <div className={module.submitReview}>
+            <p>{reviewNumber} reviews</p>
+            {showSumbit &&
+                <button 
+                    className={module.openPopup}
+                    onClick={openPopup}
+                    >Submit a reaview</button>
+            }
+        </div>
 
         <section 
             className={module.estimation__popup}

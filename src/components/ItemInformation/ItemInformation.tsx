@@ -65,11 +65,13 @@ const ItemInformation: FC<ItemInformationI> = ({description, reviews, itemId}) =
 
                 {displayedInformation === display.REVEWES && 
                     <ReviewList 
+                        showOne={false}
                         reviews={reviews}
                         itemId={itemId}
                         />
                 }
             </div>
+
         </section>
     )
 

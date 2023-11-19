@@ -22,11 +22,11 @@ const Home:FC<HomePropsI> = () => {
     <main className='home'>
       <Landing />
       <MobileCategory />
-      <MobileItemSlider>
+      <MobileItemSlider showLink={true}>
         Flash Sale
       </MobileItemSlider>
 
-      <MobileItemSlider>
+      <MobileItemSlider showLink={true}>
         Mega Sale
       </MobileItemSlider>
 

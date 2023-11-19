@@ -1,5 +1,7 @@
 @import '../../styles/variables';
 @import '../../styles/mixin.scss';
+@import '../../styles/config';
+
 
 .estimation {
     display: flex;
@@ -89,9 +91,24 @@
             color: $main-yellow;
         }
     }
+
+    .submitReview {
+        display: flex;
+        gap: 10px;
+    }
 }
 
 
 .open {
     display: flex;
+}
+
+
+
+@include small-md {
+    .estimation {
+        .submitReview {
+            display: none;
+        }
+    }
 }
