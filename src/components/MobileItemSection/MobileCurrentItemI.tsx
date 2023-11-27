@@ -89,6 +89,10 @@ const MobileCurrentItem:FC<MobileCurrentItemI> = ({
         if(!(e.target instanceof HTMLElement)) return;
         if(!e.target.id) return;
 
+        clearListOfCssClasses(e.target, 'section');
+
+        e.target.classList.add(module.selected);
+
         setCartInformation({...cartInformation, color: e.target.id});
    }
 
@@ -96,6 +100,9 @@ const MobileCurrentItem:FC<MobileCurrentItemI> = ({
         if(!(e.target instanceof HTMLElement)) return;
         if(!e.target.id) return;
 
+        clearListOfCssClasses(e.target, 'section');
+
+        e.target.classList.add(module.selected);
         setCartInformation({...cartInformation, size: Number(e.target.id)});
     }
 
@@ -106,6 +113,16 @@ const MobileCurrentItem:FC<MobileCurrentItemI> = ({
             cartInformation.size,
             cartInformation.countedItem
             )
+    }
+
+    const clearListOfCssClasses = (target: HTMLElement, htmlBlock: string) => {
+        const itemList = target.closest(htmlBlock);
+        if(!itemList) return;
+
+        const prevSelectedItem = itemList.querySelectorAll(`article`);
+        for(let i = 0; i < prevSelectedItem.length; i++) {
+            prevSelectedItem[i].classList.remove(module.selected);
+        }
     }
 
     return (

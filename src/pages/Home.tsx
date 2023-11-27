@@ -12,7 +12,6 @@ import MobileCategory from '../components/MobileCategory/MobileCategory';
 import MobileItemSlider from '../components/ModileItemSlider/MobileItemSlider';
 import MobileAdd from '../components/MobileAdd/MobileAdd';
 
-
 interface HomePropsI {
 }
 

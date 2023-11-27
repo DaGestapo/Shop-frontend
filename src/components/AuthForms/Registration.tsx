@@ -1,13 +1,19 @@
-import {FC, useState, Dispatch, ChangeEvent, useEffect} from 'react';
+import {FC, useEffect} from 'react';
 import module from './Forms.module.scss';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxTypedHools'; 
+import { useAppDispatch } from '../../hooks/reduxTypedHools';
+import { useInputData } from '../../hooks/useInputData';
+
+import { setError } from '../../store/redusers/errorReduces'; 
 import {setUser} from '../../store/redusers/userReduser';
 
 import {envelopeIcon, lockIcon, userIcon} from '../../utils/icons-utf';
 import FormInputUI from '../../UI/FormInputUI/FormInputUI';
+
 import { registration } from '../../http/userAPI';
+
+
 import { UserI, RegistrationDataI } from '../../model/userI';
-import { useInputData } from '../../hooks/useInputData';
+
 
 export interface RegistrationPropsI {
 }
@@ -35,16 +41,19 @@ const Registration:FC<RegistrationPropsI> = () => {
   
   async function registrate () {
 
-    const responce: UserI = await registration(
+    const responce: UserI | Error = await registration(
       data.username,
       data.email,
       data.password
-    )
-    
-    dispatch(setUser(responce))
+    );
+
+    if(!(responce instanceof Error)) {
+      dispatch(setUser(responce))
+    } else {
+      dispatch(setError(responce.message))
+    }
+
   }
-
-
 
   return (
     <form 
