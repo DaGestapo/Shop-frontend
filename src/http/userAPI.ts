@@ -41,7 +41,12 @@ export const login = async (
         localStorage.setItem('token', data.token);
         return jwt_decode<UserI>(data.token);
     } catch (error) {
-        return null;
+        let errorMessage: string = '';
+
+        if(error instanceof AxiosError) {
+            errorMessage = getErrorMessageFromServer(error);
+        }
+        return new Error(`${errorMessage}`);
     }
 }
 

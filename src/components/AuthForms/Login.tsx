@@ -14,6 +14,7 @@ import { LoginDataI } from '../../model/userI';
 import { UserI } from '../../model/userI';
 
 import {envelopeIcon, lockIcon} from '../../utils/icons-utf';
+import { setError } from '../../store/redusers/errorReduces';
 
 
 interface LoginPropsI {
@@ -28,12 +29,14 @@ const Login:FC<LoginPropsI> = () => {
   })
 
   async function logIn() {
-    const responce: UserI | null = await login(
+    const responce: UserI | Error = await login(
       data.email,
       data.password
     )
-    if(responce) {
+    if(!(responce instanceof Error)) {
       dispatch(setUser(responce));
+    } else {
+      dispatch(setError(responce.message))
     }
   }
 
