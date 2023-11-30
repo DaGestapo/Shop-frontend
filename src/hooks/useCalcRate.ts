@@ -31,9 +31,7 @@ export const useCalcRate = (usersRate: RatingI[] | undefined, starS: IconDefinit
                 }) 
             }
         }
-       
         setRatingObj(tempStars);
-        
     }, [usersRate]);
 
     return ratingObj;

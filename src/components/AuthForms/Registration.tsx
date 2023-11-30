@@ -37,14 +37,14 @@ const Registration:FC<RegistrationPropsI> = () => {
     }
   }, [data.password, data.passwordAgain]);
 
-
   
   async function registrate () {
 
     const responce: UserI | Error = await registration(
       data.username,
       data.email,
-      data.password
+      data.password,
+      data.passwordAgain
     );
 
     if(!(responce instanceof Error)) {

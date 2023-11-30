@@ -9,12 +9,13 @@ import { getErrorMessageFromServer } from '../utils/getErrorMessageFromServer';
 export const registration = async (
     username: string, 
     email: string, 
-    password: string
+    password: string,
+    passwordAgain: string
 ) => {
     try {
         const {data} = await $host.post(
             'api/user/registration', 
-            {username, email, password, role: 'ADMIN'}
+            {username, email, password, passwordAgain, role: 'ADMIN'}
         );
         localStorage.setItem('token', data.token);
         return jwt_decode<UserI>(data.token);

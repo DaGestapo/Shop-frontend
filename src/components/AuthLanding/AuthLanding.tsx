@@ -17,8 +17,6 @@ interface AuthLandingPropsI {
 const AuthLanding:FC<AuthLandingPropsI> = () => {
     const [isRegistration, changeTypeAuth] = useChangeTypeAuntification();
 
-
-
     if(isRegistration) {
         return (
             <div className={module.auth}>
