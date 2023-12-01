@@ -1,4 +1,4 @@
-import { getItems } from '../http/itemAPI';
+import itemApi from '../http/itemAPI';
 
 interface PaginationI {
     typeId?: number;
@@ -10,7 +10,7 @@ export const itemsPagination = async ({
     page, 
 }: PaginationI) => {
 
-  const data = await getItems({typeId, page});
+  const data = await itemApi.getAllitems.bind(itemApi)({typeId, page});
 
   return data;
 }

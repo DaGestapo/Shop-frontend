@@ -1,7 +1,8 @@
-import { getItems } from "../http/itemAPI";
+import itemApi from "../http/itemAPI";
 import { ItemFullI } from "../model/stateModel/itemI";
 import { useAppDispatch, useAppSelector } from "./reduxTypedHools";
 import {addNewByTypeId, paginationByTypeId } from "../store/redusers/itemReduser";
+import { setError } from "../store/redusers/errorReduces";
 
 export const useLoader = (limit: number) => {
     const stateItems = useAppSelector(state => state.item);
@@ -16,13 +17,18 @@ export const useLoader = (limit: number) => {
                 }
             }
     
-            let data: ItemFullI[];
+            let data: ItemFullI[] | Error;
             if(typeId === 0) {
-                data = await getItems({limit, page});
+                data = await itemApi.getAllitems.bind(itemApi)({limit, page});
             } else {
-                data = await getItems({limit, page, typeId});
+                data = await itemApi.getAllitems.bind(itemApi)({limit, page, typeId});
             }
-            if(page) {
+
+
+            
+            if(data instanceof Error) {
+                dispatch(setError(data.message));
+            } else if(page && data) {
                 dispatch(paginationByTypeId({
                     typeId,
                     items: data

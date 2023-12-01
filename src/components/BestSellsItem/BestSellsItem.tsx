@@ -19,7 +19,7 @@ interface BestSellsItemI {
 }
 
 const BestSellsItem:FC<BestSellsItemI> = () => {
-    const [item, isLoading, error] = useGetItem(); // TEMPORARY SOLUTION FOT THAT SECTION
+    const [item, isLoading] = useGetItem(); // TEMPORARY SOLUTION FOT THAT SECTION
     const rate = useCalcRate(item?.rating, starSolidIcon, starRegularIcon);
     const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ const BestSellsItem:FC<BestSellsItemI> = () => {
         )
     } else {
         return (
-            <div>{error.message}</div>
+            <div>Error occured</div>
         )
         
     }

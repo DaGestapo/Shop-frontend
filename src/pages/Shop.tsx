@@ -13,7 +13,7 @@ export interface ShopPropsI {
 
 const Shop:FC<ShopPropsI> = () => {
   const links = useCalcRoute();
-  const  loader = useLoader(8);
+  const  loader = useLoader(10);
   const [items, typeID, setTypeId] = useGetItemByCallback(loader());
 
   return (

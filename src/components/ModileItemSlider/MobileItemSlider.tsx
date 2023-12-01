@@ -4,11 +4,14 @@ import module from './MobileItemSlider.module.scss';
 import MobileSliderHeader from "../MobileSliderHeader/MobileSliderHeader";
 import ShopItem from "../ShopItem/ShopItem";
 
-import { getHotItems } from "../../http/itemAPI";
+import itemApi from "../../http/itemAPI";
+import { useAppDispatch } from "../../hooks/reduxTypedHools";
+import { useLoadItemsByLength } from "../../hooks/useLoadItemsBylenght";
 import { ItemFullI } from "../../model/stateModel/itemI";
 import { ItemSlider } from "../../service/itemSlider";
 
 import { TypeElementSlider } from "../../service/itemSlider";
+import { setError } from "../../store/redusers/errorReduces";
 
 interface MobileItemSliderI extends PropsWithChildren {
     showLink: boolean;
@@ -17,12 +20,19 @@ interface MobileItemSliderI extends PropsWithChildren {
 const MobileItemSlider: FC<MobileItemSliderI> = ({children, showLink}) => {
     const [items, setItems] = useState<ItemFullI[]>([]);
     const listRef = createRef<HTMLElement>();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        getHotItems({limit: 5})
+        itemApi.getHotItems.bind(itemApi)({limit: 5})
             .then(data => {
-                setItems(data);
+            
+                if(data instanceof Error) {
+                    dispatch(setError(data.message));
+                } else {
+                    setItems(data);
+                }
             })
+
     }, []);
 
     useEffect(() => {

@@ -13,7 +13,7 @@ interface HomeSaleOffPropsI {
 
 const HomeSaleOff: FC<HomeSaleOffPropsI> = () => {
     const items = useLoadItemsByLength(3, 0);
-    const loader = useLoader(8);
+    const loader = useLoader(10);
     
     if(items.length < 3) {
         loader()(0);

@@ -19,7 +19,7 @@ export interface PaginationI {
 }
 
 const HomeShop:FC<HomeShopPropsI> = () => {
-  const loader = useLoader(8);
+  const loader = useLoader(10);
   const buttonRef = createRef<HTMLButtonElement>();
   const [items, typeId, setTypeId] = useGetItemByCallback(loader());
   const [
@@ -35,7 +35,7 @@ const HomeShop:FC<HomeShopPropsI> = () => {
   useEffect(() => {
     if(!buttonRef.current || !items) return;
 
-    if(items.length % 8 === 0) {
+    if(items.length % 10 === 0) {
       buttonRef.current.classList.remove(module.hide);
     } else {
       buttonRef.current.classList.add(module.hide);

@@ -21,7 +21,6 @@ export const useGetItemByCallback = (
         setItems(itemState[typeId].items);
       }
     else {
-
       callback(typeId);
     }
   }, [itemState, typeId, items]);

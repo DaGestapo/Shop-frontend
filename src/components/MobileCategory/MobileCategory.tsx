@@ -9,8 +9,7 @@ import { ItemSlider, TypeElementSlider } from '../../service/itemSlider';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxTypedHools';
 import { setCategiryes } from '../../store/redusers/categoryReduser';
 
-import { getAllTypes } from '../../http/typeAPI';
-import { getAllBrands } from '../../http/brandAPI';
+import {brandApi, typeApi} from '../../http/brandTypeAPI';
 
 import { OptionsI } from '../../model/serverModel/optionsI';
 
@@ -31,12 +30,14 @@ const MobileCategory: FC<MobileCategoryI> = () => {
         loadOptions();
 
         async function loadOptions() {
-            let typesOptions = await getAllTypes();
-            let brandsOprions = await getAllBrands();
+            let typesOptions = await typeApi.getAllBrandType();
+            let brandsOprions = await brandApi.getAllBrandType();
 
-            let options = typesOptions.concat(brandsOprions);
-
-            dispatch(setCategiryes(options));
+            if(!(brandsOprions instanceof Error) && !(typesOptions instanceof Error)) {
+                let options = typesOptions.concat(brandsOprions);
+                dispatch(setCategiryes(options));
+            }
+        
         }
         
     }, []);

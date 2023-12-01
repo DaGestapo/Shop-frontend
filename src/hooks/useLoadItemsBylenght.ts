@@ -6,7 +6,7 @@ import { useLoader } from "./useLoader";
 export const useLoadItemsByLength = (length: number, typeId: number, itemId?: string | null) => {
     const [items, setItems] = useState<ItemShopI[] | []>([]);
     const reduxState = useAppSelector(state => state);
-    const loader = useLoader(8);
+    const loader = useLoader(10);
     let relatedLength = length;
 
     useEffect(() => {

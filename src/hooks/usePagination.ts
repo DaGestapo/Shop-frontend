@@ -17,7 +17,7 @@ export const usePagination = (
       setState: React.Dispatch<React.SetStateAction<PaginationI>>,
       loadNewPage: (pages: number) => void
   ] => {
-    const loader = useLoader(8);
+    const loader = useLoader(10);
     const [state, setState] = useState<PaginationI>({
         type: typeId? typeId : 0,
         page: 1,
@@ -26,8 +26,7 @@ export const usePagination = (
       });
     const isPaginationEnd = useMemo((): boolean => {
         if(!items) return false;
-    
-        return items.length % 8 === 0;
+        return items.length % 10 === 0;
     }, [state.page]);
 
 

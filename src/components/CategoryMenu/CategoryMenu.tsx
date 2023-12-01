@@ -4,8 +4,7 @@ import module from './CategoryMenu.module.scss';
 
 import { useNavigate } from 'react-router-dom';
 
-import { getAllTypes } from '../../http/typeAPI';
-import { getAllBrands } from '../../http/brandAPI';
+import {brandApi, typeApi} from '../../http/brandTypeAPI';
 
 import { CategoryI } from '../../model/serverModel/optionsI';
 
@@ -27,11 +26,13 @@ const CategoryMenu: FC<CategoryMenuI> = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getAllTypes()
+        typeApi.getAllBrandType()
             .then(types => {
-                getAllBrands()
+                brandApi.getAllBrandType()
                     .then(brands => {
-                        setCategories({types, brands});
+                        if(!(brands instanceof Error) && !(types instanceof Error)) {
+                            setCategories({types, brands});
+                        }
                     })
             })
     }, []);
