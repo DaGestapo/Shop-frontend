@@ -5,7 +5,7 @@ import ItemEstimation from "../ItemEstimation/ItemEstimation";
 import ItemPrice from "../ItemPrice/ItemPrice";
 import ShareButtonUI from "../../UI/ShareButtonUI/ShareButtonUI";
 
-import { addCartItem } from "../../http/cartAPI";
+import cartApi from "../../http/cartAPI";
 
 import { 
     starRegularIcon, 
@@ -83,9 +83,11 @@ const CurrentItem: FC<CurrentItemI> = ({item, starRate, cartInformation, setCart
       }
     
       const addItemToCart = (e: PointerEvent<HTMLDivElement>) => {
-        addCartItem(item.id, cartInformation.color, Number(cartInformation.size), cartInformation.countedItem)
-          .then(data => {
-          
+          cartApi.addItemToUserCart.bind(cartApi)({
+            itemId: item.id,
+            quantity: cartInformation.countedItem,
+            color: cartInformation.color,
+            size: cartInformation.size,
           })
     
           e.preventDefault();

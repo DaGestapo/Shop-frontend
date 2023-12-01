@@ -1,6 +1,7 @@
 import { ItemI } from "../stateModel/itemI";
 
 export interface CartRequestParamsI {
+    itemId: string;
     quantity: number;
     color: string;
     size: number;

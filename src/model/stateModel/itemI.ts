@@ -34,6 +34,7 @@ export interface ItemI extends ItemPriceI {
     img: string,
     hot: boolean,
 } 
+       
 
 export interface ItemWithInfoI extends ItemI {
     item_info: ItemInfoWithColorsSizes

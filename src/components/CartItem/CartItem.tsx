@@ -8,7 +8,7 @@ import TdPrice from "../TdPrice/TdPrice";
 
 import { useAppDispatch } from "../../hooks/reduxTypedHools";
 
-import { changeQuantityOfItemByCartedItemId, deleteCartedItemByCartedItemId } from "../../http/cartAPI";
+import cartApi from "../../http/cartAPI";
 import { changeQuantityByCartedItemId,setInitialCartState } from "../../store/redusers/cartReduser";
 
 import {CartedItemI} from '../../model/stateModel/cartI';
@@ -22,18 +22,23 @@ const CartItem: FC<CartedItemI> = ({img, name, price, id, quantity}) => {
     }, [multiplyerOfPrice]);
 
     useEffect(() => {
-        changeQuantityOfItemByCartedItemId(id, multiplyerOfPrice)
+        cartApi.changeQuantityOfItemByCartedItemId.bind(cartApi)(id, multiplyerOfPrice)
             .then(data => {
-                dispath(changeQuantityByCartedItemId({id, quantity: data}));
+                if(!(data instanceof Error)) {
+                    dispath(changeQuantityByCartedItemId({id, quantity: data}));
+                }
             })
     }, [multiplyerOfPrice]);
 
     const deleteCartedItem = (cartedItemId: string) => {
 
         return () => {
-            deleteCartedItemByCartedItemId(cartedItemId)
+            cartApi.deleteCartedItemByCartedItemId.bind(cartApi)(cartedItemId)
             .then(data => {
-                dispath(setInitialCartState(data.cart_item));
+                console.log(data)
+                if(!(data instanceof Error)) {
+                    dispath(setInitialCartState(data.cart_item));
+                }
             })
         }
     }

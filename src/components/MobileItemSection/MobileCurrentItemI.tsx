@@ -11,7 +11,7 @@ import ReviewList from "../ReviewList/ReviewList";
 
 import { ItemSlider } from "../../service/itemSlider";
 
-import { addCartItem } from "../../http/cartAPI";
+import cartApi from "../../http/cartAPI";
 
 import { ItemFullI } from "../../model/stateModel/itemI";
 import { StarI } from "../../model/itemI";
@@ -107,12 +107,12 @@ const MobileCurrentItem:FC<MobileCurrentItemI> = ({
     }
 
     const addToCartItem = () => {
-        addCartItem(
-            item.id, 
-            cartInformation.color,
-            cartInformation.size,
-            cartInformation.countedItem
-            )
+        cartApi.addItemToUserCart.bind(cartApi)({
+            itemId: item.id,
+            quantity: cartInformation.countedItem,
+            color: cartInformation.color,
+            size: cartInformation.size,
+          })
     }
 
     const clearListOfCssClasses = (target: HTMLElement, htmlBlock: string) => {

@@ -1,7 +1,7 @@
 import {FC, useState, createRef, ChangeEvent, useEffect} from 'react';
 import module from './PopupCartOrder.module.scss';
 
-import { addCartItem } from '../../http/cartAPI';
+import cartApi from '../../http/cartAPI';
 
 import { CartOrderInfoI } from '../../model/stateModel/cartI';
 
@@ -46,10 +46,12 @@ const PopupCartOrder: FC<PopupCartOrderI> = ({
 
 
     const addItemToCart = () => {
-    addCartItem(itemId, orderInformation.color, orderInformation.size, 1)
-        .then(data => {
-        
-        });
+      cartApi.addItemToUserCart.bind(cartApi)({
+        itemId: itemId,
+        quantity: 1,
+        color: orderInformation.color,
+        size: orderInformation.size,
+      })
         if(deleteItemFromList) {
           deleteItemFromList();
         }

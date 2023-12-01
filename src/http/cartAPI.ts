@@ -1,38 +1,75 @@
-import { $authHost } from './index';
 import { CartResponseI } from '../model/serverModel/cartI';
+import { Api } from './api';
+import {CartItemResponseI, CartRequestParamsI} from '../model/serverModel/cartI';
 
-export const addCartItem = async(itemId: string, color: string, size: number, quantity: number) => {
-    try {
-        const URLRequest = `api/cart`;
+class CartApi extends Api {
 
-        const response = await $authHost.post(URLRequest, {
-            itemId, color, size, quantity
-        });  
-        return response;
-    } catch (error) {
-        
+    constructor(adress: string) {
+        super(adress);
+    }
+
+    public async addItemToUserCart(requestParams: CartRequestParamsI): Promise<CartItemResponseI[] | Error> {
+        try {
+            const {itemId, color, size, quantity} = requestParams;
+            const URLRequest = this.adress;
+
+            const {data} = await this.$authHost.post(URLRequest, {
+                itemId, color, size, quantity
+            });  
+            return data;
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
+    }
+
+    public async getUserCart(): Promise<CartResponseI | Error> {
+        try {
+            const URLRequest = this.adress;
+            const {data} = await this.$authHost.get(URLRequest);
+            return data;
+            
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
+    }
+
+    public async changeQuantityOfItemByCartedItemId(cartedItemId: string, quantity: number): Promise<number | Error> {
+        try {
+            const URLRequest = this.adress;
+            const {data} = await this.$authHost.put(URLRequest, {cartedItemId, quantity});
+
+            return data;
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
+    }
+
+    public async deleteCartedItemByCartedItemId(cartedItemId: string): Promise<CartResponseI | Error> {
+        try {
+            const URLRequest = this.adress;
+            const {data} = await this.$authHost.delete(URLRequest, {data: {cartedItemId}});
+
+            return data;
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
     }
 }
 
-export const getUserCart = async(): Promise<CartResponseI> => {
-   
-    const URLRequest = `api/cart`;
-    const response = await $authHost.get(URLRequest);
-    return response.data;
-
-}
-
-export const changeQuantityOfItemByCartedItemId = async(cartedItemId: string, quantity: number): Promise<number> => {
-    const URLRequest = `api/cart`;
-    const response = await $authHost.put(URLRequest, {cartedItemId, quantity});
-
-    return response.data;
-}
-
-export const deleteCartedItemByCartedItemId = async (cartedItemId: string): Promise<CartResponseI> => {
-    const URLRequest = `api/cart`;
-    const response = await $authHost.delete(URLRequest, {data: {cartedItemId}});
-
-    return response.data;
-
-}
+export default new CartApi(`api/cart`);

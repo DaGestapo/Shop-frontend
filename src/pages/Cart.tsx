@@ -8,7 +8,7 @@ import { useAppDispatch } from '../hooks/reduxTypedHools';
 
 import { setInitialCartState } from '../store/redusers/cartReduser';
 
-import { getUserCart } from '../http/cartAPI';
+import cartApi from '../http/cartAPI';
 
 interface CartI {
 }
@@ -18,9 +18,11 @@ const Cart:FC<CartI> = () => {
   const dispath = useAppDispatch();
  
   useEffect(() => {
-    getUserCart()
+    cartApi.getUserCart.bind(cartApi)()
       .then(data => {
-        dispath(setInitialCartState(data.cart_item));
+        if(!(data instanceof Error)){
+          dispath(setInitialCartState(data.cart_item));
+        }
       })
   }, []);
 
