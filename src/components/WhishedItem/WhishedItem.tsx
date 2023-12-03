@@ -8,7 +8,7 @@ import PopupCartOrder from "../PopupCartOrder/PopupCartOrder";
 
 import { useAppDispatch } from "../../hooks/reduxTypedHools";
 
-import { deleteWhishedItemByWhishedItemId } from "../../http/wishAPI";
+import wishApi from "../../http/wishAPI";
 import { setInitialWishState } from "../../store/redusers/wishReduser";
 
 
@@ -47,9 +47,11 @@ const WhishedItem: FC<WhishedItemI> = ({
     const deleteWhishedItem = (whishId: string) => {
 
         return () => {
-            deleteWhishedItemByWhishedItemId(whishId)
+            wishApi.deleteWhishedItemByWhishedItemId.bind(wishApi)(whishId)
             .then(data => {
-                dispath(setInitialWishState(data));
+                if(!(data instanceof Error)) {
+                    dispath(setInitialWishState(data));
+                }
             })
         }
     }

@@ -1,30 +1,59 @@
-import { $authHost } from './index';
 import { WishedResponseI } from '../model/serverModel/wishI';
+import { Api } from './api';
 
 
-export const addWhishItem = async(itemId: string) => {
-    try {
-        const URLRequest = `api/wish`;
-        const response = await $authHost.post(URLRequest, {
-            itemId
-        });  
-        return response.data;
-    } catch (error) {
+
+class WishApi extends Api {
+    constructor(adress: string) {
+        super(adress);
+    }
+
+    public async addWishItem(itemId: string): Promise<{message: string} | Error> {
+        try {
+            const URLRequest = this.adress;
+            const {data} = await this.$authHost.post(URLRequest, {
+                itemId
+            });  
+            return data;
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
+    }
+
+    public async getUserWhishedItems():  Promise<WishedResponseI[] | Error> {
+        try {
+            const URLRequest = this.adress;
+            const {data} = await this.$authHost.get(URLRequest);
+
+            return data;
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
+    }
+
+    public async deleteWhishedItemByWhishedItemId(wishItemId: string): Promise<WishedResponseI[] | Error> {
+        try {
+            const URLRequest = this.adress;
+            const {data} = await this.$authHost.delete(URLRequest, {data: {wishItemId}});
         
+            return data;
+
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
     }
 }
 
-export const getUserWhishItems = async(): Promise<WishedResponseI[]> => {
-    const URLRequest = `api/wish`;
-    const response = await $authHost.get(URLRequest);
-
-    return response.data;
-}
-
-export const deleteWhishedItemByWhishedItemId = async (wishItemId: string): Promise<WishedResponseI[]> => {
-    const URLRequest = `api/wish`;
-    const response = await $authHost.delete(URLRequest, {data: {wishItemId}});
-
-    return response.data;
-
-}
+export default new WishApi('api/wish');

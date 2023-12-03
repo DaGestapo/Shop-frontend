@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHools';
 
 import Rating from '../Rating/Rating';
 
-import { changeReviewText } from '../../http/reviewAPI';
+import reviewApi from '../../http/reviewAPI';
 import { deleteItemByItemId } from '../../store/redusers/itemReduser';
 
 import { userIcon } from '../../utils/icons-utf';
@@ -21,7 +21,7 @@ interface ReviewPropsI {
 const Review: FC<ReviewPropsI> = ({review, itemId}) => {
     const dispatch = useAppDispatch();
     const currentUser = useAppSelector(state => state.user); 
-    const [textReviewa, setTextReviewa] = useState<string>(review.review);
+    const [textReview, setTextReview] = useState<string>(review.review);
     const [isReviewEditorOpen, setIsReviewEditorOpen] = useState<boolean>(false);
 
     const paragraphRef = createRef<HTMLParagraphElement>();
@@ -38,7 +38,10 @@ const Review: FC<ReviewPropsI> = ({review, itemId}) => {
     const confirmChanges = () => {
         openPopup();
 
-        changeReviewText(textReviewa, review.id)
+        reviewApi.changeUserReviewText.bind(reviewApi)({
+            reviewId: review.id,
+            reviewText: textReview
+        })
             .then(data => {
                 console.log(data);
             })
@@ -47,7 +50,7 @@ const Review: FC<ReviewPropsI> = ({review, itemId}) => {
     }
 
     const changeReview = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setTextReviewa(e.target.value);
+        setTextReview(e.target.value);
     }
 
     return (
@@ -78,7 +81,7 @@ const Review: FC<ReviewPropsI> = ({review, itemId}) => {
                     className={module.reviewArticle__popup}>
                     <textarea
                         onChange={changeReview}
-                    >{textReviewa}</textarea>
+                    >{textReview}</textarea>
                 </div>
             }
             </div>

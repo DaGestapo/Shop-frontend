@@ -6,8 +6,8 @@ import { useAppDispatch } from '../../hooks/reduxTypedHools';
 
 import { deleteItemByItemId } from '../../store/redusers/itemReduser';
 
-import { addUserRating } from '../../http/ratingAPI';
-import { addUserReview } from '../../http/reviewAPI';
+import ratingApi from '../../http/ratingAPI';
+import reviewApi from '../../http/reviewAPI';
 
 import { starSolidIcon } from '../../utils/icons-utf';
 
@@ -50,13 +50,21 @@ const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId, showSum
 
         const currentIndex = Number(svg.id)+1;
 
-        addUserRating(currentIndex, itemId)
+        ratingApi.addNewuserRating.bind(ratingApi)({
+            rate: currentIndex, 
+            itemId
+        })
             .then(data => {
-                console.log(data);
+                if(!(data instanceof Error)) {
+                    console.log(data);
+                }
             });
 
         if(reviewText) {
-            addUserReview(reviewText, itemId)
+            reviewApi.addUserReview.bind(reviewApi)({
+                reviewText, 
+                itemId
+            })
                 .then(data => {
                     console.log(data);
                 })

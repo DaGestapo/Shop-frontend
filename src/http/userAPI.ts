@@ -1,77 +1,103 @@
 import jwt_decode from 'jwt-decode';
-import { $host, $authHost } from './index';
 import { UserI } from '../model/userI';
-import { AxiosError } from 'axios';
+import { UserRequestI } from '../model/serverModel/userI';
+import { Api } from './api';
 
-import { getErrorMessageFromServer } from '../utils/getErrorMessageFromServer';
 
+class UserApi extends Api {
+    constructor(adress: string) {
+        super(adress);
+    }
 
-export const registration = async (
-    username: string, 
-    email: string, 
-    password: string,
-    passwordAgain: string
-) => {
-    try {
-        const {data} = await $host.post(
-            'api/user/registration', 
-            {username, email, password, passwordAgain, role: 'ADMIN'}
-        );
-        localStorage.setItem('token', data.token);
-        return jwt_decode<UserI>(data.token);
-    } catch (error) {
-        let errorMessage: string = '';
+    public async registration(requestParams: UserRequestI): Promise<UserI | Error> {
+        try {
+            let URLRequest = `${this.adress}/registration`;
+            const {username, email, password, passwordAgain} = requestParams;
+            const {data} = await this.$host.post(
+                URLRequest, 
+                {username, email, password, passwordAgain, role: 'ADMIN'}
+            );
 
-        if(error instanceof AxiosError) {
-            errorMessage = getErrorMessageFromServer(error);
+            localStorage.setItem('token', data.token);
+
+            return jwt_decode<UserI>(data.token);
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
         }
-        return new Error(`${errorMessage}`);
     }
-   
-}
 
-export const login = async (
-    email: string, 
-    password: string
-) => {
-    try {
-        const {data} = await $host.post(
-            'api/user/login', 
-            {email, password}
-        );
-        localStorage.setItem('token', data.token);
-        return jwt_decode<UserI>(data.token);
-    } catch (error) {
-        let errorMessage: string = '';
+    public async login(email: string, password: string): Promise<UserI | Error> {
+        try {
+            let URLRequest = `${this.adress}/login`;
 
-        if(error instanceof AxiosError) {
-            errorMessage = getErrorMessageFromServer(error);
+            const {data} = await this.$host.post(
+                URLRequest, 
+                {email, password}
+            );
+
+            localStorage.setItem('token', data.token);
+
+            return jwt_decode<UserI>(data.token);
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
         }
-        return new Error(`${errorMessage}`);
+    }
+
+    public async check(): Promise<UserI | Error> {
+        try {
+            let URLRequest = `${this.adress}/auth`;
+            const {data} = await this.$authHost.get(URLRequest);
+
+            localStorage.getItem('token');
+            return jwt_decode<UserI>(data.token);
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
+    }
+
+    public async getUserBalance(id: string): Promise<string | Error> {
+        try {
+            const {data} = await this.$authHost.get(
+                `api/user/${id}`, 
+            );
+            console.log(data);
+            return data;
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
+    }
+
+    public async deleteUserAccount(userId: string): Promise<{message: string} | Error> {
+        try {
+            let URLRequest = this.adress;
+
+            const {data} = await this.$authHost.delete(URLRequest, {data: {id: userId}});   
+
+            return data;
+        } catch (error) {
+            if(error instanceof Error) {
+                return this.errorHandler.bind(this)(error);
+            } else {
+                return new Error('Unexpected error');
+            }
+        }
     }
 }
 
-
-export const check = async () => {
-    try {
-        const {data} = await $authHost.get(
-            'api/user/auth', 
-        );
-
-        localStorage.getItem('token');
-        return jwt_decode<UserI>(data.token);
-    } catch (error) {
-        return null;
-    }
-}
-
-export const getBalance = async (id: string) => {
-    try {
-        const {data} = await $authHost.get(
-            `api/user/${id}`, 
-        );
-        return data;
-    } catch (error) {
-        return null;
-    }
-}
+export default new UserApi('api/user');

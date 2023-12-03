@@ -3,7 +3,7 @@ import { useCalcRoute } from '../hooks/useCalcRoute';
 import AccomplishedRoute from '../components/AccomplishedRoute/AccomplishedRoute';
 import WishTable from '../components/WishTable/WishTable';
 import { useAppSelector, useAppDispatch } from '../hooks/reduxTypedHools';
-import {getUserWhishItems} from '../http/wishAPI';
+import wishApi from '../http/wishAPI';
 import { setInitialWishState } from '../store/redusers/wishReduser';
 
 
@@ -16,9 +16,11 @@ const WishList:FC<WishListPropsI> = () => {
   const wishedItems = useAppSelector(state => state.wish.wishedItems);
 
   useEffect(() => {
-    getUserWhishItems()
+    wishApi.getUserWhishedItems.bind(wishApi)()
       .then(data => {
-        dispatch(setInitialWishState(data))
+        if(!(data instanceof Error)) {
+          dispatch(setInitialWishState(data))
+        }
       })
   }, []);
 

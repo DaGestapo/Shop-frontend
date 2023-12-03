@@ -7,7 +7,7 @@ import PopupCartOrder from '../PopupCartOrder/PopupCartOrder';
 import { useShowCover } from '../../hooks/useShowCover';
 import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHools';
 
-import { addWhishItem } from '../../http/wishAPI';
+import wishApi from '../../http/wishAPI';
 
 import { setInitialWishState } from '../../store/redusers/wishReduser';
 import { ItemWithInfoI } from '../../model/stateModel/itemI';
@@ -39,10 +39,12 @@ const ItemPopupOnImg:FC<ItemPopupOnImgPropsI> = ({item, refArticle}) => {
   }
 
   const addItemToWishList = () => {
-    addWhishItem(item.id)
+    wishApi.addWishItem.bind(wishApi)(item.id)
       .then(data => {
-        console.log(data);
-        //dispatch(setInitialWishState(data));
+        if(!(data instanceof Error)) {
+            console.log(data);
+          //dispatch(setInitialWishState(data));
+        }
       })
   }
 

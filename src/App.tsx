@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from './hooks/reduxTypedHools';
 import { Route, Routes, BrowserRouter, useLocation } from 'react-router-dom';
 import './styles/app.scss';
-import { check, getBalance } from './http/userAPI';
+import userApi from './http/userAPI';
 import { setUser, setUserBalance } from './store/redusers/userReduser';
 import { useLoader } from './hooks/useLoader';
 
@@ -24,11 +24,14 @@ function App() {
     checkToken();
 
     async function checkToken() {
-      const data = await check();
-      if(data) {
-        dispatch( setUser(data) );
-        const {balance} = await getBalance(data.id);
-        dispatch(setUserBalance(balance));
+      const user = await userApi.check.bind(userApi)();
+      if(!(user instanceof Error)) {
+        dispatch( setUser(user) );
+        const balance = await userApi.getUserBalance.bind(userApi)(user.id);
+
+        if(!(balance instanceof Error)) {
+          dispatch(setUserBalance(balance));
+        }
       }
     }
 

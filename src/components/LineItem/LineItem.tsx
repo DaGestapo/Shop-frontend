@@ -8,7 +8,7 @@ import PopupCartOrder from '../PopupCartOrder/PopupCartOrder';
 
 import { useNavigate } from 'react-router-dom';
 import { useCalcRate } from '../../hooks/useCalcRate';
-import { addWhishItem } from '../../http/wishAPI';
+import wishApi from '../../http/wishAPI';
 
 import { starRegularIcon } from '../../utils/icons-utf';
 import { starSolidIcon } from '../../utils/icons-utf';
@@ -23,7 +23,7 @@ const LineItem:FC<{item: ItemShopI}> = ({item}) => {
     const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
 
     const addItemToWishList = () => {
-        addWhishItem(item.id)
+        wishApi.addWishItem.bind(wishApi)(item.id)
           .then(data => {
           })
       }

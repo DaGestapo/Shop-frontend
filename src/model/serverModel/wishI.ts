@@ -16,3 +16,4 @@ export interface WishedResponseI {
     id: string;
     item: ResponseItemWhishedI;
 }
+

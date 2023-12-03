@@ -8,7 +8,7 @@ import { useInputData } from '../../hooks/useInputData';
 
 import { setUser } from '../../store/redusers/userReduser';
 
-import { login } from '../../http/userAPI';
+import userApi from '../../http/userAPI';
 
 import { LoginDataI } from '../../model/userI';
 import { UserI } from '../../model/userI';
@@ -29,7 +29,7 @@ const Login:FC<LoginPropsI> = () => {
   })
 
   async function logIn() {
-    const responce: UserI | Error = await login(
+    const responce: UserI | Error = await userApi.login.bind(userApi)(
       data.email,
       data.password
     )

@@ -26,7 +26,7 @@ const AuthLanding:FC<AuthLandingPropsI> = () => {
                 <Registration />
                 <div className={module.changeLanding}>
                     <p>
-                        Have a account? 
+                        Have an account? 
                         <span onClick={changeTypeAuth}> Login</span>
                     </p>
                 </div>

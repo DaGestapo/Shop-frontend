@@ -9,7 +9,7 @@ import {setUser} from '../../store/redusers/userReduser';
 import {envelopeIcon, lockIcon, userIcon} from '../../utils/icons-utf';
 import FormInputUI from '../../UI/FormInputUI/FormInputUI';
 
-import { registration } from '../../http/userAPI';
+import userApi from '../../http/userAPI';
 
 
 import { UserI, RegistrationDataI } from '../../model/userI';
@@ -40,12 +40,12 @@ const Registration:FC<RegistrationPropsI> = () => {
   
   async function registrate () {
 
-    const responce: UserI | Error = await registration(
-      data.username,
-      data.email,
-      data.password,
-      data.passwordAgain
-    );
+    const responce: UserI | Error = await userApi.registration.bind(userApi)({
+      username: data.username,
+      email: data.email,
+      password: data.password,
+      passwordAgain: data.passwordAgain
+    });
 
     if(!(responce instanceof Error)) {
       dispatch(setUser(responce))
