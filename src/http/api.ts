@@ -22,3 +22,5 @@ export class Api {
         return new Error(`${errorMessage}`)
     }
 }
+
+export type TypeApi = InstanceType<typeof Api>;

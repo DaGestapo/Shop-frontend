@@ -9,7 +9,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/reduxTypedHools';
 
 import wishApi from '../../http/wishAPI';
 
-import { setInitialWishState } from '../../store/redusers/wishReduser';
+import { useError } from '../../hooks/useError';
 import { ItemWithInfoI } from '../../model/stateModel/itemI';
 
 import { heartIcon, cartIcon } from '../../utils/icons-utf';
@@ -17,14 +17,15 @@ import { heartIcon, cartIcon } from '../../utils/icons-utf';
 interface ItemPopupOnImgPropsI {
   item: ItemWithInfoI;
   refArticle: React.RefObject<HTMLDivElement>;
+  isShowPopup: boolean;
+  setIsShowPopup: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ItemPopupOnImg:FC<ItemPopupOnImgPropsI> = ({item, refArticle}) => {
+const ItemPopupOnImg:FC<ItemPopupOnImgPropsI> = ({item, refArticle, isShowPopup, setIsShowPopup}) => {
   const divCoverRef = createRef<HTMLDivElement>();
   const imgRef = createRef<HTMLImageElement>();
-
+  const checkOnError = useError();
   const userAuth = useAppSelector(state => state.user.auth);
-  const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
   
   useShowCover(refArticle, divCoverRef, imgRef);
   
@@ -39,13 +40,7 @@ const ItemPopupOnImg:FC<ItemPopupOnImgPropsI> = ({item, refArticle}) => {
   }
 
   const addItemToWishList = () => {
-    wishApi.addWishItem.bind(wishApi)(item.id)
-      .then(data => {
-        if(!(data instanceof Error)) {
-            console.log(data);
-          //dispatch(setInitialWishState(data));
-        }
-      })
+    checkOnError( wishApi.addWishItem.bind(wishApi)(item.id));
   }
 
   return (

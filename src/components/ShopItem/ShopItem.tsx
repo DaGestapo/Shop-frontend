@@ -1,5 +1,4 @@
-import {FC, createRef, MouseEvent, useEffect} from 'react';
-import { FontAwesomeIcon,  } from '@fortawesome/react-fontawesome';
+import {FC, useRef, MouseEvent, useState} from 'react';
 import module from './ShopItem.module.scss';
 
 import ItemPopupOnImg from '../ItemPopupOnImg/ItemPopupOnImg';
@@ -21,8 +20,8 @@ interface ShopItemI {
 }
 
 const ShopItem:FC<ShopItemI> = ({item, position}) => {
-    const divArticleRef = createRef<HTMLDivElement>();
-
+    const divArticleRef = useRef<HTMLDivElement>(null);
+    const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
     const navigate = useNavigate();
     const rate = useCalcRate(item.rating, starSolidIcon, starRegularIcon);
 
@@ -50,6 +49,8 @@ const ShopItem:FC<ShopItemI> = ({item, position}) => {
         <ItemPopupOnImg 
             refArticle={divArticleRef}
             item={item}
+            isShowPopup={isShowPopup}
+            setIsShowPopup={setIsShowPopup}
         />
       
         <section className={module.info}>

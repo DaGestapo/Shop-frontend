@@ -6,6 +6,7 @@ import ItemEstimation from '../ItemEstimation/ItemEstimation';
 import AddToCartButtonUI from '../../UI/AddToCartButtonUI/AddToCartButtonUI';
 import PopupCartOrder from '../PopupCartOrder/PopupCartOrder';
 
+import { useError } from '../../hooks/useError';
 import { useNavigate } from 'react-router-dom';
 import { useCalcRate } from '../../hooks/useCalcRate';
 import wishApi from '../../http/wishAPI';
@@ -21,11 +22,10 @@ const LineItem:FC<{item: ItemShopI}> = ({item}) => {
     const navigate = useNavigate();
     const rate = useCalcRate(item.rating, starSolidIcon, starRegularIcon);
     const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
+    const checkOnError = useError();
 
     const addItemToWishList = () => {
-        wishApi.addWishItem.bind(wishApi)(item.id)
-          .then(data => {
-          })
+        checkOnError(wishApi.addWishItem.bind(wishApi)(item.id));
       }
 
     const clickOnSectionHandler = (e: MouseEvent<HTMLElement>) => {

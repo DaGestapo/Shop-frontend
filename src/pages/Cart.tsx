@@ -5,6 +5,7 @@ import CartPayment from '../components/CartPayment/CartPayment';
 
 import { useCalcRoute } from '../hooks/useCalcRoute';
 import { useAppDispatch } from '../hooks/reduxTypedHools';
+import { useError } from '../hooks/useClearError';
 
 import { setInitialCartState } from '../store/redusers/cartReduser';
 

@@ -1,10 +1,10 @@
-import {useState, useEffect} from 'react';
+import { useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from './hooks/reduxTypedHools';
-import { Route, Routes, BrowserRouter, useLocation } from 'react-router-dom';
+import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import './styles/app.scss';
 import userApi from './http/userAPI';
 import { setUser, setUserBalance } from './store/redusers/userReduser';
-import { useLoader } from './hooks/useLoader';
+import {useError} from './hooks/useClearError';
 
 import { publicRoutes, authRoutes, adminRoutes, nonAuthRoutes } from './router/router';
 
@@ -13,12 +13,15 @@ import Home from './pages/Home';
 import Footer from './components/Footer/Footer';
 import MobileMenu from './components/MobileMenu/MobileMenu';
 import MobileSearch from './components/MobileSearch/MobileSearch';
+import ErrorPopup from './components/ErrorPopup/ErrorPopup';
 
 import { resizeMobileList } from './utils/resizeMObileLists';
 
 function App() {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user);
+  const [error, clearError] = useError(3000);
+  
 
   useEffect(() => {
     checkToken();
@@ -90,6 +93,11 @@ function App() {
           </Routes>
           <MobileMenu />
           <Footer />
+            {error.isError &&
+                <ErrorPopup closeError={clearError}>
+                  {error.message}
+                </ErrorPopup>
+            }
         </BrowserRouter>
       </div>
   );

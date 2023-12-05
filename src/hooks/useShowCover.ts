@@ -7,39 +7,41 @@ export const useShowCover = (
     img: RefObject<HTMLImageElement>
     ) => {
 
-    useEffect(() => {
-        if(!cover.current || !item.current) return;
+        useEffect(() => {
+            if(!cover.current || !item.current) return;
+            let cheker: boolean = true; 
+            item.current.addEventListener('mouseenter', setCoverDiv);
+            item.current.addEventListener('mouseleave', hideCover);
 
-        item.current.addEventListener('mouseenter', setCoverDiv);
-        item.current.addEventListener('mouseleave', hideCover);
+            function setCoverDiv (e: globalThis.MouseEvent) {
+                if(!cover.current || !img.current) return;  
+                if(cheker === false) return;
+                cheker = true;
 
-        function setCoverDiv () {
-            if(!cover.current || !img.current) return;  
-         
-            const imgHeight = img.current.getBoundingClientRect().height;
+                const imgHeight = img.current.getBoundingClientRect().height;
 
-            img.current.style.display = 'none';
-            cover.current.style.display = 'flex';
-            cover.current.style.height = `${imgHeight}px`;
-        }
-    
-        function hideCover (e: globalThis.MouseEvent) {
-            if(!cover.current || !img.current) return;
-
-            if(!e.relatedTarget) {
-                return;
-            } else{
-                img.current.style.display = 'flex';
-                cover.current.style.display = 'none';
-                cover.current.style.height = `0px`;
+                img.current.style.display = 'none';
+                cover.current.style.display = 'flex';
+                cover.current.style.height = `${imgHeight}px`;
             }
-            
-            
-        }
+        
+            function hideCover (e: globalThis.MouseEvent) {
+                if(!cover.current || !img.current) return;
+                if(!e.relatedTarget) {   
+                    cheker = false;
+                } else{
+                    cheker = true;
+                    img.current.style.display = 'flex';
+                    cover.current.style.display = 'none';
+                    cover.current.style.height = `0px`;
+                }
+                
+                
+            }
 
-        return () => {
-            item.current?.removeEventListener('mouseleave', hideCover);
-            item.current?.removeEventListener('mouseenter', setCoverDiv);
-        }
+            return () => {
+                item.current?.removeEventListener('mouseleave', hideCover);
+                item.current?.removeEventListener('mouseenter', setCoverDiv);
+            }
     }, [item, cover]);
 }

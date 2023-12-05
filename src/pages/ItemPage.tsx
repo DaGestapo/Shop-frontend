@@ -8,7 +8,6 @@ import ErrorPopup from '../components/ErrorPopup/ErrorPopup';
 
 import { useCalcRoute } from '../hooks/useCalcRoute';
 import { useGetItem } from '../hooks/useGetItem';
-import { useAppSelector } from '../hooks/reduxTypedHools';
 import { useError } from '../hooks/useClearError';
 
 interface ItemPagePropsI {
@@ -17,7 +16,6 @@ interface ItemPagePropsI {
 const ItemPage:FC<ItemPagePropsI> = () => {
   const [item, isLoading] = useGetItem();
   const links = useCalcRoute(item?.id);
-  const [error, clearError] = useError(3000);
 
    if(item) {
     return (
@@ -28,12 +26,6 @@ const ItemPage:FC<ItemPagePropsI> = () => {
           itemId={item.id}
           typeId={item.type.id}  
         />
-
-      {error.isError &&
-          <ErrorPopup closeError={clearError}>
-            {error.message}
-          </ErrorPopup>
-      }
       </section>
     );  
   } else if(isLoading) {
@@ -44,11 +36,6 @@ const ItemPage:FC<ItemPagePropsI> = () => {
     return (
       <div>
         <h1>Error occured</h1>
-        {error.isError &&
-          <ErrorPopup closeError={clearError}>
-            {error.message}
-          </ErrorPopup>
-        }
       </div>
       
     )

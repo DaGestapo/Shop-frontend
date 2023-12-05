@@ -1,10 +1,10 @@
-import { FC, useState, createRef, PointerEvent, ChangeEvent, Dispatch } from "react";
+import { FC, createRef, PointerEvent, ChangeEvent, Dispatch } from "react";
 import module from './CurrentItem.module.scss'; 
 
 import ItemEstimation from "../ItemEstimation/ItemEstimation";
 import ItemPrice from "../ItemPrice/ItemPrice";
 import ShareButtonUI from "../../UI/ShareButtonUI/ShareButtonUI";
-
+import { useError } from "../../hooks/useError";
 import cartApi from "../../http/cartAPI";
 
 import { 
@@ -29,6 +29,7 @@ interface CurrentItemI {
 
 const CurrentItem: FC<CurrentItemI> = ({item, starRate, cartInformation, setCartInformation}) => {
     const mainImageRef = createRef<HTMLImageElement>();
+    const checkOnError = useError();
 
     const selectColor = (e: PointerEvent<HTMLLIElement>) => {
         const target = e.target;
@@ -39,59 +40,58 @@ const CurrentItem: FC<CurrentItemI> = ({item, starRate, cartInformation, setCart
         setCartInformation({...cartInformation, color});
     }
     
-      const itemCounter = (e: PointerEvent<HTMLButtonElement>) => {
-        const target = e.target;
-        if(!(target instanceof HTMLButtonElement)) return;
-    
-        const targetId = target.id;
-        
-        switch (targetId) {
-          case 'add':
-            if(cartInformation.countedItem >= 10) return;
-            setCartInformation({
-              ...cartInformation, 
-              countedItem: cartInformation.countedItem + 1
-            })
-            break;
-    
-          case 'subtract':
-            if(cartInformation.countedItem <= 1) return;
-            setCartInformation({
-              ...cartInformation, 
-              countedItem: cartInformation.countedItem - 1
-            })
-            break;
-        
-          default:
-            break;
-        }
-    
-      }
-    
-      const selectListener = (e: ChangeEvent<HTMLSelectElement>) => {
-        const targetSelect = e.currentTarget;
-        const size = Number(targetSelect.value);
-        
-        setCartInformation({...cartInformation, size});
-      }
-    
-      const changeMainImage = (e: PointerEvent<HTMLImageElement>) => {
-        const target = e.target;
-        if(!(target instanceof HTMLImageElement) || !mainImageRef.current) return;
-        const src = target.src;
-        mainImageRef.current.src = src;
-      }
-    
-      const addItemToCart = (e: PointerEvent<HTMLDivElement>) => {
-          cartApi.addItemToUserCart.bind(cartApi)({
-            itemId: item.id,
-            quantity: cartInformation.countedItem,
-            color: cartInformation.color,
-            size: cartInformation.size,
+    const itemCounter = (e: PointerEvent<HTMLButtonElement>) => {
+      const target = e.target;
+      if(!(target instanceof HTMLButtonElement)) return;
+  
+      const targetId = target.id;
+      
+      switch (targetId) {
+        case 'add':
+          if(cartInformation.countedItem >= 10) return;
+          setCartInformation({
+            ...cartInformation, 
+            countedItem: cartInformation.countedItem + 1
           })
-    
-          e.preventDefault();
+          break;
+  
+        case 'subtract':
+          if(cartInformation.countedItem <= 1) return;
+          setCartInformation({
+            ...cartInformation, 
+            countedItem: cartInformation.countedItem - 1
+          })
+          break;
+      
+        default:
+          break;
       }
+  
+    }
+  
+    const selectListener = (e: ChangeEvent<HTMLSelectElement>) => {
+      const targetSelect = e.currentTarget;
+      const size = Number(targetSelect.value);
+      
+      setCartInformation({...cartInformation, size});
+    }
+  
+    const changeMainImage = (e: PointerEvent<HTMLImageElement>) => {
+      const target = e.target;
+      if(!(target instanceof HTMLImageElement) || !mainImageRef.current) return;
+      const src = target.src;
+      mainImageRef.current.src = src;
+    }
+    
+    const addItemToCart = async (e: PointerEvent<HTMLDivElement>) => {
+        checkOnError(cartApi.addItemToUserCart.bind(cartApi)({
+          itemId: item.id,
+          quantity: cartInformation.countedItem,
+          color: cartInformation.color,
+          size: cartInformation.size,
+        }));
+        e.preventDefault();
+    }
 
     return (
         <section className={module.currentItem}>

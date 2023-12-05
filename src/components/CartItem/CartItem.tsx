@@ -6,6 +6,7 @@ import TdProduct from "../TdProduct/TdProduct";
 import TdDelete from "../TdDelete/TdDelete";
 import TdPrice from "../TdPrice/TdPrice";
 
+import { useError } from "../../hooks/useError";
 import { useAppDispatch } from "../../hooks/reduxTypedHools";
 
 import cartApi from "../../http/cartAPI";
@@ -13,10 +14,10 @@ import { changeQuantityByCartedItemId,setInitialCartState } from "../../store/re
 
 import {CartedItemI} from '../../model/stateModel/cartI';
 
-
 const CartItem: FC<CartedItemI> = ({img, name, price, id, quantity}) => {
     const [multiplyerOfPrice, setMultiplyerOfPrice] = useState<number>(quantity);
     const dispath = useAppDispatch();
+    const checkOnError = useError();
     const totalSingleItemPrice = useMemo(() => {
         return multiplyerOfPrice * price
     }, [multiplyerOfPrice]);
@@ -33,13 +34,10 @@ const CartItem: FC<CartedItemI> = ({img, name, price, id, quantity}) => {
     const deleteCartedItem = (cartedItemId: string) => {
 
         return () => {
-            cartApi.deleteCartedItemByCartedItemId.bind(cartApi)(cartedItemId)
-            .then(data => {
-                console.log(data)
-                if(!(data instanceof Error)) {
-                    dispath(setInitialCartState(data.cart_item));
-                }
-            })
+            checkOnError(cartApi.deleteCartedItemByCartedItemId.bind(cartApi)(cartedItemId))
+                .then(data => {
+                    dispath(setInitialCartState(data.cart_item))
+                })
         }
     }
 

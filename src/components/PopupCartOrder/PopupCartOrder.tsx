@@ -1,7 +1,8 @@
-import {FC, useState, createRef, ChangeEvent, useEffect} from 'react';
+import {FC, useState, useRef, ChangeEvent, useEffect} from 'react';
 import module from './PopupCartOrder.module.scss';
 
 import cartApi from '../../http/cartAPI';
+import { useError } from '../../hooks/useError';
 
 import { CartOrderInfoI } from '../../model/stateModel/cartI';
 
@@ -30,8 +31,8 @@ const PopupCartOrder: FC<PopupCartOrderI> = ({
         color: colors[0],
         size: Number(sizes[0])
       });
-    const popupInfo = createRef<HTMLDivElement>();
-
+    const popupInfo = useRef<HTMLDivElement>(null);
+      const checkOnError = useError();
 
       useEffect(() => {
         if(!popupInfo.current) return;
@@ -46,12 +47,13 @@ const PopupCartOrder: FC<PopupCartOrderI> = ({
 
 
     const addItemToCart = () => {
-      cartApi.addItemToUserCart.bind(cartApi)({
-        itemId: itemId,
-        quantity: 1,
-        color: orderInformation.color,
-        size: orderInformation.size,
-      })
+        checkOnError(cartApi.addItemToUserCart.bind(cartApi)({
+          itemId: itemId,
+          quantity: 1,
+          color: orderInformation.color,
+          size: orderInformation.size,
+        }))
+        
         if(deleteItemFromList) {
           deleteItemFromList();
         }
