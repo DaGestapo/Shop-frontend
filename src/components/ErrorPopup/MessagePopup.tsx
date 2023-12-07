@@ -1,13 +1,14 @@
 import { FC, PropsWithChildren, useRef, useState } from "react";
 import {CSSTransition} from "react-transition-group";
-import module from './ErrorPopup.module.scss';
+import module from './MessagePopup.module.scss';
 
 
-interface ErrorPopupI extends PropsWithChildren {
-    closeError: (divRef: HTMLDivElement, hideClassName: string) => void
+interface MessagePopupI extends PropsWithChildren {
+    closePopup: (divRef: HTMLDivElement, hideClassName: string) => void;
+    isError: boolean;
 }
 
-const ErrorPopup: FC<ErrorPopupI> = ({children, closeError}) => {
+const MessagePopup: FC<MessagePopupI> = ({children, isError,  closePopup}) => {
     const divRef = useRef<HTMLDivElement>(null);
     const [showPopUp, setShowPopup] = useState<boolean>(false);
 
@@ -16,12 +17,12 @@ const ErrorPopup: FC<ErrorPopupI> = ({children, closeError}) => {
         if(!divRef.current) return;
         setShowPopup((prev) => !prev);
 
-       closeError(divRef.current, module.hide);
+        closePopup(divRef.current, module.hide);
     }
 
     return (
         <CSSTransition nodeRef={divRef} in={showPopUp} timeout={200}>
-            <div ref={divRef} className={module.errorPopup}>
+            <div ref={divRef} className={`${module.messagePopup} ${isError ? module.error : module.message}`}>
             <button 
                 className={module.close}
                 onClick={onClick}
@@ -36,4 +37,4 @@ const ErrorPopup: FC<ErrorPopupI> = ({children, closeError}) => {
     )
 }
 
-export default ErrorPopup;
+export default MessagePopup;

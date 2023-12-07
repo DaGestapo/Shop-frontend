@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import urlService from "../service/urlService";
 import itemApi from "../http/itemAPI";
 import { addNewItem } from "../store/redusers/itemReduser";
-import { setError } from "../store/redusers/errorReduces";
+import { setMessageError } from "../store/redusers/messageReduces";
 import { getErrorMessageFromServer } from "../utils/getErrorMessageFromServer";
 import { AxiosError } from "axios";
 
@@ -31,7 +31,6 @@ export const useGetItem = (): [
             setIsLoading(false);
             setItem(findedItem);
         } else {
-    
             itemApi.getItemById.bind(itemApi)(itemId)
                 .then(data => {
                     setIsLoading(false);
@@ -40,7 +39,7 @@ export const useGetItem = (): [
                         dispath(addNewItem(data));
                     } else {
                         setIsLoading(false);
-                        dispath(setError(data.message))
+                        dispath(setMessageError(data.message))
                         setItem(null);
                     }
                 });

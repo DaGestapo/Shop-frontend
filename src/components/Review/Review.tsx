@@ -81,7 +81,8 @@ const Review: FC<ReviewPropsI> = ({review, itemId}) => {
                     className={module.reviewArticle__popup}>
                     <textarea
                         onChange={changeReview}
-                    >{textReview}</textarea>
+                        defaultValue={textReview}
+                    />
                 </div>
             }
             </div>

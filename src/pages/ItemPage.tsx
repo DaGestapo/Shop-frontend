@@ -4,11 +4,9 @@ import AccomplishedRoute from '../components/AccomplishedRoute/AccomplishedRoute
 import ItemSection from '../components/ItemSection/ItemSection';
 import RelatedItem from '../components/RelatedItem/RelatedItem';
 import Loader from '../components/Loader/Loader';
-import ErrorPopup from '../components/ErrorPopup/ErrorPopup';
 
 import { useCalcRoute } from '../hooks/useCalcRoute';
 import { useGetItem } from '../hooks/useGetItem';
-import { useError } from '../hooks/useClearError';
 
 interface ItemPagePropsI {
 }

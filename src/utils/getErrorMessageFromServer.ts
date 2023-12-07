@@ -13,7 +13,6 @@ export const getErrorMessageFromServer = (error: AxiosError) => {
         const data: any = error.response.data;
         tempObj.sIndex = data.search(':');
         tempObj.eIndex = data.search('<br>');
-        console.log(tempObj.sIndex, tempObj.eIndex);
         tempObj.message = data.slice(tempObj.sIndex + 1, tempObj.eIndex);
     }
     

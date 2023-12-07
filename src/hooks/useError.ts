@@ -1,5 +1,5 @@
 import { useAppDispatch } from "./reduxTypedHools"
-import { setError } from "../store/redusers/errorReduces";
+import { setMessageError, setMessage } from "../store/redusers/messageReduces";
 
 export const useError = () => {
     const dispatch = useAppDispatch();
@@ -11,11 +11,17 @@ export const useError = () => {
         const promise = new Promise((resolve, reject) => {
             callback.then(data => {
                 if(data instanceof Error) {
-                    dispatch(setError(data.message));
-                } else {
-               
-                    resolve(data);
-                }
+                    dispatch(setMessageError(data.message));
+                    return;
+                } 
+
+                if(data['message']) {
+                    dispatch(setMessage(data['message']));
+
+                } 
+                
+                resolve(data);
+    
             })
         });
         return promise;

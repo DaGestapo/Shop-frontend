@@ -7,7 +7,7 @@ import { itemReduser } from "./redusers/itemReduser";
 import { cartReduser } from "./redusers/cartReduser";
 import {wishReduser} from './redusers/wishReduser'
 import { categoryReduser } from "./redusers/categoryReduser";
-import { errorReduser } from "./redusers/errorReduces";
+import { messageReduser } from "./redusers/messageReduces";
 
 const rootRedusers = combineReducers({
     user: userReduser,
@@ -15,7 +15,7 @@ const rootRedusers = combineReducers({
     cart: cartReduser,
     wish: wishReduser,
     category: categoryReduser,
-    error: errorReduser,
+    error: messageReduser,
     [newsAPI.reducerPath]: newsAPI.reducer,
     [advantageAPI.reducerPath]: advantageAPI.reducer,
     [featuredItemAPI.reducerPath]: featuredItemAPI.reducer

@@ -2,7 +2,7 @@ import itemApi from "../http/itemAPI";
 import { ItemFullI } from "../model/stateModel/itemI";
 import { useAppDispatch, useAppSelector } from "./reduxTypedHools";
 import {addNewByTypeId, paginationByTypeId } from "../store/redusers/itemReduser";
-import { setError } from "../store/redusers/errorReduces";
+import { setMessageError } from "../store/redusers/messageReduces";
 
 
 export const useLoaderByBrand = (limit: number) => {
@@ -29,7 +29,7 @@ export const useLoaderByBrand = (limit: number) => {
 
 
             if(data instanceof Error) {
-                dispatch(setError(data.message));
+                dispatch(setMessageError(data.message));
             } else if(page && data) {
                 dispatch(paginationByTypeId({
                     typeId,

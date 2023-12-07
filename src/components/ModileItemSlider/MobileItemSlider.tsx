@@ -11,7 +11,7 @@ import { ItemFullI } from "../../model/stateModel/itemI";
 import { ItemSlider } from "../../service/itemSlider";
 
 import { TypeElementSlider } from "../../service/itemSlider";
-import { setError } from "../../store/redusers/errorReduces";
+import { setMessageError } from "../../store/redusers/messageReduces";
 
 interface MobileItemSliderI extends PropsWithChildren {
     showLink: boolean;
@@ -27,7 +27,7 @@ const MobileItemSlider: FC<MobileItemSliderI> = ({children, showLink}) => {
             .then(data => {
             
                 if(data instanceof Error) {
-                    dispatch(setError(data.message));
+                    dispatch(setMessageError(data.message));
                 } else {
                     setItems(data);
                 }

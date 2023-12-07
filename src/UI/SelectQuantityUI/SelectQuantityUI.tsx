@@ -1,7 +1,5 @@
 import {FC, PointerEvent, useEffect, useState, Dispatch} from 'react';
 import module from './SelectQuantityUI.module.scss';
-import { useAppDispatch } from '../../hooks/reduxTypedHools';
-import { setError } from '../../store/redusers/errorReduces';
 
 import { CartInformationI } from '../../model/stateModel/cartI';
 
@@ -15,7 +13,6 @@ const SelectQuantityUI: FC<SelectQuantityUII> = ({state, changeValue}) => {
     const [value, setValue] = useState<number>(
       typeof state === 'number'? state : 1
     );
-    const dispatch = useAppDispatch();
 
     const itemCounter = (e: PointerEvent<HTMLButtonElement>) => {
         const target = e.target;

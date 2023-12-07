@@ -72,7 +72,7 @@ class UserApi extends Api {
             const {data} = await this.$authHost.get(
                 `api/user/${id}`, 
             );
-            console.log(data);
+            
             return data;
         } catch (error) {
             if(error instanceof Error) {

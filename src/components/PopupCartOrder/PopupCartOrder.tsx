@@ -32,21 +32,21 @@ const PopupCartOrder: FC<PopupCartOrderI> = ({
         size: Number(sizes[0])
       });
     const popupInfo = useRef<HTMLDivElement>(null);
-      const checkOnError = useError();
+    const checkOnError = useError();
 
-      useEffect(() => {
-        if(!popupInfo.current) return;
+    useEffect(() => {
+      if(!popupInfo.current) return;
 
-        if(show) {
-            popupInfo.current.classList.add(module.show);
-            return;
-        }
-        popupInfo.current.classList.remove(module.show);
-
-      }, [show]);
+      if(show) {
+          popupInfo.current.classList.add(module.show);
+          return;
+      }
+      popupInfo.current.classList.remove(module.show);
+    }, [show]);
 
 
     const addItemToCart = () => {
+        setIsShow(!show);
         checkOnError(cartApi.addItemToUserCart.bind(cartApi)({
           itemId: itemId,
           quantity: 1,
@@ -58,7 +58,7 @@ const PopupCartOrder: FC<PopupCartOrderI> = ({
           deleteItemFromList();
         }
         popupInfo.current?.classList.remove(module.show);
-        setIsShow(false);
+        
     }
     const selectColor = (e: ChangeEvent<HTMLSelectElement>) => {
     const target = e.target;
@@ -85,7 +85,7 @@ const PopupCartOrder: FC<PopupCartOrderI> = ({
                 onChange={selectColor}
                 >
                 {colors.map(color => 
-                  <option value={color}>{color}</option>  
+                  <option key={color} value={color}>{color}</option>  
                 )}
               </select>
               <select 
@@ -93,7 +93,7 @@ const PopupCartOrder: FC<PopupCartOrderI> = ({
                 onChange={selectSize}
                 >
               {sizes.map(size => 
-                  <option value={size}>{size}</option>  
+                  <option key={size} value={size}>{size}</option>  
               )}  
               </select>
               <button 

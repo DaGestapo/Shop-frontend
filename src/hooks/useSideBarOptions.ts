@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {brandApi} from '../http/brandTypeAPI';
 import { OptionsI } from '../model/serverModel/optionsI';
 import { useAppDispatch } from './reduxTypedHools';
-import { setError } from '../store/redusers/errorReduces';
+import { setMessageError } from '../store/redusers/messageReduces';
 
 export interface FilterI {
     title: string;
@@ -20,7 +20,7 @@ export const useSideBarOptions = ( title: string) => {
         brandApi.getAllBrandType()
             .then(data => {
                 if(data instanceof Error) {
-                    dispatch(setError(data.message));
+                    dispatch(setMessageError(data.message));
                 } else {
                     setOptions({...options, options: data});
                 }

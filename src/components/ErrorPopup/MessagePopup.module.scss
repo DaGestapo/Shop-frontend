@@ -12,7 +12,7 @@
     }
 }
 
-.errorPopup {
+.messagePopup {
     position: fixed;
 
     
@@ -29,7 +29,6 @@
 
     width: auto;
 
-    background-color: $main-red;
     border-radius: 10px;
 
     color: #fff;
@@ -68,4 +67,13 @@
 .hide {
     opacity: 0;
     transform: translateY(200px);
+}
+
+
+.error {
+    background-color: $main-red;
+}
+
+.message {
+    background-color: $main-green;
 }

@@ -4,7 +4,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import './styles/app.scss';
 import userApi from './http/userAPI';
 import { setUser, setUserBalance } from './store/redusers/userReduser';
-import {useError} from './hooks/useClearError';
+import {useServerMessage} from './hooks/useServerMessage';
 
 import { publicRoutes, authRoutes, adminRoutes, nonAuthRoutes } from './router/router';
 
@@ -13,14 +13,14 @@ import Home from './pages/Home';
 import Footer from './components/Footer/Footer';
 import MobileMenu from './components/MobileMenu/MobileMenu';
 import MobileSearch from './components/MobileSearch/MobileSearch';
-import ErrorPopup from './components/ErrorPopup/ErrorPopup';
+import MessagePopup from './components/ErrorPopup/MessagePopup';
 
 import { resizeMobileList } from './utils/resizeMObileLists';
 
 function App() {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user);
-  const [error, clearError] = useError(3000);
+  const [messageState, clearError] = useServerMessage(3000);
   
 
   useEffect(() => {
@@ -93,10 +93,10 @@ function App() {
           </Routes>
           <MobileMenu />
           <Footer />
-            {error.isError &&
-                <ErrorPopup closeError={clearError}>
-                  {error.message}
-                </ErrorPopup>
+            {messageState.message &&
+                <MessagePopup isError={messageState.isError} closePopup={clearError}>
+                  {messageState.message}
+                </MessagePopup>
             }
         </BrowserRouter>
       </div>

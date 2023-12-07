@@ -3,7 +3,7 @@ import module from './Forms.module.scss';
 import { useAppDispatch } from '../../hooks/reduxTypedHools';
 import { useInputData } from '../../hooks/useInputData';
 
-import { setError } from '../../store/redusers/errorReduces'; 
+import { setMessageError } from '../../store/redusers/messageReduces'; 
 import {setUser} from '../../store/redusers/userReduser';
 
 import {envelopeIcon, lockIcon, userIcon} from '../../utils/icons-utf';
@@ -50,7 +50,7 @@ const Registration:FC<RegistrationPropsI> = () => {
     if(!(responce instanceof Error)) {
       dispatch(setUser(responce))
     } else {
-      dispatch(setError(responce.message))
+      dispatch(setMessageError(responce.message))
     }
 
   }

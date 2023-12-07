@@ -1,15 +1,17 @@
-import {FC, createRef, MouseEvent, useState, useEffect, ChangeEvent} from 'react';
+import {FC, useRef, MouseEvent, useState, useEffect, ChangeEvent} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import module from './ItemEstimation.module.scss';
 
 import { useAppDispatch } from '../../hooks/reduxTypedHools';
 
-import { deleteItemByItemId } from '../../store/redusers/itemReduser';
-
 import ratingApi from '../../http/ratingAPI';
 import reviewApi from '../../http/reviewAPI';
 
 import { starSolidIcon } from '../../utils/icons-utf';
+
+import { useError } from '../../hooks/useError';
+
+import { deleteItemByItemId, refreshItemInformation } from '../../store/redusers/itemReduser';
 
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {StarI } from '../../model/itemI';
@@ -22,9 +24,10 @@ interface ItemEstimationI {
 }
 
 const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId, showSumbit}) => {
-    const buttonRef = createRef<HTMLButtonElement>();
-    const popupRef = createRef<HTMLElement>();
-    const ratingStarsRef = createRef<HTMLElement>();
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const popupRef = useRef<HTMLElement>(null);
+    const ratingStarsRef = useRef<HTMLElement>(null);
+    const checkOnMessage = useError();
     const dispatch = useAppDispatch();
 
     const [reviewText, setReviewText] = useState<string>('');
@@ -50,28 +53,13 @@ const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId, showSum
 
         const currentIndex = Number(svg.id)+1;
 
-        ratingApi.addNewuserRating.bind(ratingApi)({
+        checkOnMessage(ratingApi.addNewuserRating.bind(ratingApi)({
             rate: currentIndex, 
             itemId
+        })).then(() => {
+            dispatch(deleteItemByItemId(itemId))
         })
-            .then(data => {
-                if(!(data instanceof Error)) {
-                    console.log(data);
-                }
-            });
 
-        if(reviewText) {
-            reviewApi.addUserReview.bind(reviewApi)({
-                reviewText, 
-                itemId
-            })
-                .then(data => {
-                    console.log(data);
-                })
-        }    
-        setReviewText('');
-
-        dispatch(deleteItemByItemId(itemId));
         ratingStarsRef.current?.classList.remove(module.open);
     }
 
@@ -106,9 +94,19 @@ const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId, showSum
         popupRef.current?.classList.remove(module.open);
     }
 
+    const sendReviewToServer = () => {
+        
+        if(reviewText) {
+           checkOnMessage(reviewApi.addUserReview.bind(reviewApi)({
+                reviewText, 
+                itemId
+            }))
+        }    
+        setReviewText('');
+    }
+
     const openPopup = () => {
         popupRef.current?.classList.add(module.open);
-
     }
 
   return (
@@ -144,6 +142,7 @@ const ItemEstimation:FC<ItemEstimationI> = ({rate, reviewNumber, itemId, showSum
             </article>
             <button 
                 ref={buttonRef}
+                onClick={sendReviewToServer}
             >Submit review</button>
         </section>
 

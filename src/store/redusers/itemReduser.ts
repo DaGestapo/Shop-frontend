@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { ItemFullI } from "../../model/stateModel/itemI";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { ItemsI } from "../../model/stateModel/itemI";
+import { ReviewRequestResponseWitchUserI } from "../../model/serverModel/ratingReviewI";
+import { ReviewI } from "../../model/stateModel/reviewI";
 
 const initialState = [] as ItemsI[];
 
@@ -57,17 +59,29 @@ export const itemsSlice = createSlice({
                 for(let j = 0; j < state[i].items.length; j++) {
                     if(itemId === state[i].items[j].id) {
                         findedItem = true;
-            
                     }
-
+                    console.log(findedItem);
                     if(findedItem && state[i].items[j+1]) {
                         state[i].items[j] = state[i].items[j+1];
+                        
                     }
         
                     if(findedItem && j === state[i].items.length - 1) {
-                        console.log('end');
                         state[i].items.pop();
                     }
+                }
+            }
+        },
+
+        refreshItemInformation: (state, action: PayloadAction<{id: string, reviews: ReviewI[]}>) => {
+            const itemId = action.payload.id;
+            
+            console.log(action.payload);
+            console.log(state);
+            for(let itemList of state) {
+                if(itemList.items[0].id === itemId) {
+                    
+                    itemList.items[0].review = action.payload.reviews;
                 }
             }
         }
@@ -80,7 +94,8 @@ export const {
     changeItemsByTypeId, 
     paginationByTypeId, 
     addNewItem,
-    deleteItemByItemId
+    deleteItemByItemId,
+    refreshItemInformation
 } = itemsSlice.actions;
 
 export const itemReduser = itemsSlice.reducer;

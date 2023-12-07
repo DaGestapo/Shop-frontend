@@ -14,7 +14,7 @@ import { LoginDataI } from '../../model/userI';
 import { UserI } from '../../model/userI';
 
 import {envelopeIcon, lockIcon} from '../../utils/icons-utf';
-import { setError } from '../../store/redusers/errorReduces';
+import { setMessageError } from '../../store/redusers/messageReduces';
 
 
 interface LoginPropsI {
@@ -36,7 +36,7 @@ const Login:FC<LoginPropsI> = () => {
     if(!(responce instanceof Error)) {
       dispatch(setUser(responce));
     } else {
-      dispatch(setError(responce.message))
+      dispatch(setMessageError(responce.message))
     }
   }
 

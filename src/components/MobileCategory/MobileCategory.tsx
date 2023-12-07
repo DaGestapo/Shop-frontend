@@ -69,6 +69,7 @@ const MobileCategory: FC<MobileCategoryI> = () => {
             <section ref={listRef} className={`${module.mobileCategory__list} mobileList`}>
                 {category.list.map((option, index) => 
                     <article 
+                        key={option.id + option.name}
                         className={`${module.mobileCategory__list_item}`}
                         >
                         <FontAwesomeIcon icon={userIcon}/>    

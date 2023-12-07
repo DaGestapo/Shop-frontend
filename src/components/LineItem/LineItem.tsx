@@ -1,4 +1,4 @@
-import {FC, createRef, useState, MouseEvent} from 'react';
+import {FC, useRef, useState, MouseEvent} from 'react';
 import module from './LineItem.module.scss'
 
 import ItemPrice from '../ItemPrice/ItemPrice';
@@ -18,7 +18,7 @@ import { ItemShopI } from '../../model/stateModel/itemI';
 
 
 const LineItem:FC<{item: ItemShopI}> = ({item}) => {
-    const divArticleRef = createRef<HTMLDivElement>();
+    const divArticleRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
     const rate = useCalcRate(item.rating, starSolidIcon, starRegularIcon);
     const [isShowPopup, setIsShowPopup] = useState<boolean>(false);
@@ -35,7 +35,7 @@ const LineItem:FC<{item: ItemShopI}> = ({item}) => {
         const targetSelect = e.target.closest('select');
 
         if(tragetButton) {
-            setIsShowPopup(true);
+            setIsShowPopup(state => !state);
             return;
         } else if(targetSelect) {
             return;
@@ -43,6 +43,7 @@ const LineItem:FC<{item: ItemShopI}> = ({item}) => {
         
         navigate(`/home/shop/${item.id}`)
     }
+
   return (
     <article 
         className={module.shopItem}
