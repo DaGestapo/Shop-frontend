@@ -6,14 +6,17 @@ import { useLoaderByBrand } from '../../hooks/useLoaderByBrand';
 import { selectChild } from '../../utils/selectChildLi-utf';
 
 import { OptionsI } from '../../model/serverModel/optionsI';
+import { FilterI } from '../../model/serverModel/optionsI';
+import { SelectedOptionsI } from '../../model/serverModel/optionsI';
 
 export interface SideBarOptionPropsI {
     title: string;
     options: OptionsI[];
+    setBrandOptions: React.Dispatch<React.SetStateAction<FilterI>>, 
     typeId: number;
 }
 
-const SideBarOption:FC<SideBarOptionPropsI> = ({title, options, typeId}) => {
+const SideBarOption:FC<SideBarOptionPropsI> = ({title, options, setBrandOptions, typeId}) => {
     const selectChildItem = selectChild(module);
     const fatherEl = createRef<HTMLUListElement>();
     const loader = useLoaderByBrand(8);
@@ -27,9 +30,29 @@ const SideBarOption:FC<SideBarOptionPropsI> = ({title, options, typeId}) => {
 
         if(!(li instanceof HTMLLIElement)) return;
 
-        const id = Number(li.id);
-        if(!id) return;
-        loader()(typeId, id);
+        const name = li.id;
+        if(!name) return;
+
+        const newOptions: SelectedOptionsI[] = []; 
+        for(let i = 0; i < options.length; i++) {
+            if(options[i].name === name) {
+                newOptions[i] = {
+                    id: options[i].id,
+                    name: options[i].name,
+                    selected: true,
+                }
+            } else {
+                newOptions[i] = {
+                    id: options[i].id,
+                    name: options[i].name,
+                    selected: false,
+                }
+            }
+        }
+
+        setBrandOptions(state => {
+            return {...state, options: newOptions}
+        })
 
     }
 
@@ -46,7 +69,7 @@ const SideBarOption:FC<SideBarOptionPropsI> = ({title, options, typeId}) => {
                     }}
                 >
                 {options.map(item => 
-                    <li id={item.id.toString()} key={item.name}>
+                    <li id={item.name.toString()} key={item.name}>
                         {item.name}
                     </li>
                 )}

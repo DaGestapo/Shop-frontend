@@ -9,8 +9,7 @@ import {
     HOME_ROUTE, 
     SHOP_BAGS_ROUTE, 
     SHOP_BELT_ROUTE, 
-    SHOP_ROUTE, 
-    SHOP_SNEAKERS_ROUTE 
+    SHOP_SNEAKERS_ROUTE,
 } from '../../utils/routeConst-utf';
 
 

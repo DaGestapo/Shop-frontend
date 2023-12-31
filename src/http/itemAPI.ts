@@ -11,9 +11,10 @@ class ItemApi extends Api {
 
     public async getAllitems(requestParams: ItemRequestParamsI): Promise<ItemFullI[] | Error> {
         try {
-            const {limit, page, brandId, typeId} = requestParams;
+            const {limit, page, brandId, typeId, leftPrice, rightPrice} = requestParams;
 
-            let URLRequest = `${this.adress}?limit=${limit? limit: 8}&page=${page? page: 1}`;
+            let URLRequest = `${this.adress}?limit=${limit? limit: 8}&page=${page? page: 1}&leftPrice=${leftPrice}&rightPrice=${rightPrice}`;
+            
             if(typeId) {
                 URLRequest +=`&typeId=${typeId}`;
             }

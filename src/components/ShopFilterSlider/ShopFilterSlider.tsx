@@ -8,15 +8,13 @@ import { PricesI } from '../../model/serviceModel/PriceI';
 
 export interface SidebarShopPropsI {
     sidebar: HTMLElement | null;
+    prices: PricesI,
+    setPrices:React.Dispatch<React.SetStateAction<PricesI>>
 }
 
-const ShopFilterSlider:FC<SidebarShopPropsI> = ({sidebar}) => {
+const ShopFilterSlider:FC<SidebarShopPropsI> = ({sidebar, prices, setPrices}) => {
   const [slider, setSlider] = useState<typeSlider | null>(null);
-  const [prices, setPrices] = useState<PricesI>({
-    leftPrice: 0,
-    rightPrice: 0,
-    priceRange: 0
-  });
+  
   const leftDoteRef = createRef<HTMLDivElement>();
   const rightDoteRef= createRef<HTMLDivElement>();
   const sliderRef = createRef<HTMLDivElement>();

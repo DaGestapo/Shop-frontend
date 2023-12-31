@@ -13,10 +13,12 @@
     padding: 1rem 2rem;
 
     .logo {
+        width: max-content;
         a {
             display: flex;
             align-items: center;
             gap: 5px;
+            width: max-content;
         }
     }
 

@@ -1,5 +1,6 @@
 @import '_variables';
 @import './mixin.scss';
+@import './config.scss';
 
 
 * {
@@ -8,15 +9,21 @@
     margin: 0;
 }
 
+html {
+    scrollbar-width: none;
+}
+
 
 body {
     width: 100vw;
     overflow-x: hidden;
+    scrollbar-width:none;
 }
 
 a {
     text-decoration: none;
     color: black;
+    scrollbar-width:none;
 }
 
 
@@ -27,6 +34,7 @@ main {
     align-items: center;
     justify-content: center;
     width: 100vw;
+    margin: auto;
 }
 
 .app {
@@ -67,3 +75,16 @@ button {
     border: none;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+@include small-md {
+    main {
+       width: 100vw;
+       
+       align-items: center;
+    }
+}

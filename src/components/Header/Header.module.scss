@@ -4,6 +4,7 @@
 
 .header {
     width: 100vw;
+    z-index: $z-index-header;
 }
 
 @include small-md {

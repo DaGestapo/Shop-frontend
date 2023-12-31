@@ -8,6 +8,7 @@ export const CONTACT_ROUTE = '/home/contact';
 export const SHOP_BAGS_ROUTE = '/home/shop/bags';
 export const SHOP_SNEAKERS_ROUTE = '/home/shop/sneakers';
 export const SHOP_BELT_ROUTE = '/home/shop/belt';
+export const SHOP_SUNGLASSES = '/home/shop/sunglasses';
 export const ITEM_ROUTE = '/home/shop/:id';
 
 // AUTH

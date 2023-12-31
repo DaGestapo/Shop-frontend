@@ -5,6 +5,8 @@ export interface ItemRequestParamsI {
     page?: number;
     brandId?: number;
     typeId?: number;
+    leftPrice?: number, 
+    rightPrice?: number, 
 }
 
 export interface RequestItemInfoColorsSizes {

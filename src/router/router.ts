@@ -7,6 +7,7 @@ import { ADMIN_ROUTE, CONTACT_ROUTE, HOME_ROUTE,
     SHOP_BAGS_ROUTE,
     SHOP_BELT_ROUTE,
     SHOP_SNEAKERS_ROUTE,
+    SHOP_SUNGLASSES,
     CART_ROUTE
 } from "../utils/routeConst-utf";
 
@@ -33,6 +34,7 @@ export const publicRoutes: RoutesI[] = [
     {path: SHOP_BAGS_ROUTE, component: Shop},
     {path: SHOP_BELT_ROUTE, component: Shop},
     {path: SHOP_SNEAKERS_ROUTE, component: Shop},
+    {path: SHOP_SUNGLASSES, component: Shop},
     {path: ITEM_ROUTE, component: Item},
     {path: CONTACT_ROUTE, component: Contact},
 ]

@@ -27,7 +27,7 @@ const ShopLanding:FC<ShopLandingPropsI> = ({
 }) => {
   const typeId = useGetTypeIdByEndpoint();
   const itemListRef = createRef<HTMLElement>();
-
+  
   const [displayType, setDisplayType] = useState<DisplayType>({
     type: 'GRID'
   });
